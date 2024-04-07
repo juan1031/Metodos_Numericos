@@ -13,7 +13,7 @@ import hydralit_components as hc
 # Configuración de la página
 st.set_page_config(
     page_title='Métodos Numéricos',
-    page_icon="assets/images/JML.png",
+    page_icon="assets/images/JML-sin-fondo.png",
     initial_sidebar_state="collapsed"
 )
 
