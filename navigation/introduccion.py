@@ -1,22 +1,24 @@
 import streamlit as st
 from src.funciones import displayPDF
-from components.markdown import Markdown
+from components.markdown.markdown import Markdown
+
+file1 = f'{open("./data/.Ejemplo").read()}'
+text1 = Markdown(file1).show(tab=True)
+
+file2 = f'{open("./data/Ejemplo.md").read()}'
 
 
 def intro_page():
 
     # -------------------------------------------------------------
-    st.title("Taller 1")
-    st.write("Contenido de la Página 1")
+    st.title("Trabajo 1")
     # -------------------------------------------------------------
 
     st.markdown(
-        f'{open("./data/Introduccion.html").read()}',
-        unsafe_allow_html=True)
-
-    st.markdown(
-        Markdown(open("./data/.Introduccion").read()).show(),
+        text1,
         unsafe_allow_html=True,
     )
+
+    st.markdown(file2)
 
     displayPDF("assets/Problem_Set_I_Numerical_Methods.pdf")
