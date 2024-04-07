@@ -1,6 +1,7 @@
 import streamlit as st
-from components.footer import footer_style, footer
 import hydralit_components as hc
+
+from components.footer import footer_style, footer
 from navigation.introduccion import intro_page
 from navigation.Punto_1 import punto_uno
 from navigation.Punto_2 import punto_dos
@@ -68,8 +69,8 @@ option_data = [
 
 ]
 
-over_theme = {'txc_inactive': 'black', 'menu_background': '#D6E5FA',
-              'txc_active': 'white', 'option_active': '#749BC2'}
+over_theme = {'txc_inactive': 'white', 'menu_background': '#002855',
+              'txc_active': 'black', 'option_active': '#0466c8'}
 font_fmt = {'font-class': 'h3', 'font-size': '50%'}
 
 chosen_tab = hc.option_bar(
