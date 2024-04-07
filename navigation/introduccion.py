@@ -1,31 +1,37 @@
 import streamlit as st
 from src.funciones import displayPDF
 from components.markdown.markdown import Markdown
+# from components.Custom_Components import CenteredColumns
 
 # -------------------------------------------------------------
+
 file1 = open("./data/Ejemplo2.md").read()
 text1 = Markdown(file1).show(tab=True)
 
 file2 = open("./data/Ejemplo.md").read()
 # -------------------------------------------------------------
+# Componente de centrado
+# row1_center = CenteredColumns(num_columns=1)
+# row2_center = CenteredColumns(num_columns=2)
+# -------------------------------------------------------------
 
 
 def intro_page():
 
-    # Titulo
-    st.title("Trabajo 1")
-
     st.success(
-        'Este trabajo fue realizado por: María José Castillo, Luisa Fernanda Guevara y Juan David Bocanegra')
+        '''El presente trabajo ha sido desarrollado por María José Castillo, 
+        Luisa Fernanda Guevara y Juan David Bocanegra, como parte del curso de 
+        Métodos Numéricos por el profesor Camilo Castillo de la Universidad Externado de Colombia. 
+        En este proyecto, hemos creado un aplicativo utilizando
+          técnicas de programación en Python y la implementación de la clase de Métodos
+            Numéricos para resolver un conjunto de problemas planteados en el taller.''')
+    st.divider()
 
+    st.header("Objetivo")
     st.markdown(
         text1,
         unsafe_allow_html=True,
-    )
+    ),
 
-    for i in range(2):
-        st.markdown('#')
-
-    st.markdown(file2)
-
+    st.header("Taller")
     displayPDF("assets/Problem_Set_I_Numerical_Methods.pdf")

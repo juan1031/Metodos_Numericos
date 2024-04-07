@@ -1,13 +1,14 @@
-import streamlit as st
-import hydralit_components as hc
+from navigation.Punto_5 import punto_cinco
+from navigation.Punto_4 import punto_cuatro
+from navigation.Punto_3 import punto_tres
+from navigation.Punto_2 import punto_dos
+from navigation.Punto_1 import punto_uno
+from navigation.introduccion import intro_page
 
 from components.footer import footer_style
-from navigation.introduccion import intro_page
-from navigation.Punto_1 import punto_uno
-from navigation.Punto_2 import punto_dos
-from navigation.Punto_3 import punto_tres
-from navigation.Punto_4 import punto_cuatro
-from navigation.Punto_5 import punto_cinco
+
+import streamlit as st
+import hydralit_components as hc
 
 # Configuración de la página
 st.set_page_config(
@@ -16,7 +17,8 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-max_width_str = f"max-width: {75}%;"
+
+max_width_str = f"max-width: {90}%;"
 
 st.markdown(f"""
         <style>
