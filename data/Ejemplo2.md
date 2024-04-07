@@ -1,4 +1,4 @@
-A DNA Individual Motif (IM) is a short pattern conserved between species
+A DNA Individual **Motif** (IM) is a short pattern conserved between species
 that can be bind by proteins like Transcription Factors (TFs) enabling gene
 regulation. They specifically recognize a nucleotide IM sequence called
 Transcription Factor Binding Site (TFBS) either in gene promoter or
