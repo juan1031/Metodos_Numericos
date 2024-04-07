@@ -1,7 +1,7 @@
 import streamlit as st
 import hydralit_components as hc
 
-from components.footer import footer_style, footer
+from components.footer import footer_style
 from navigation.introduccion import intro_page
 from navigation.Punto_1 import punto_uno
 from navigation.Punto_2 import punto_dos
