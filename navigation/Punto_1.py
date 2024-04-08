@@ -2,6 +2,7 @@ import streamlit as st
 import hydralit_components as hc
 from components.footer import footer_style
 
+
 # NavBar
 
 a = 'A)'

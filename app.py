@@ -45,7 +45,7 @@ st.markdown(footer_style, unsafe_allow_html=True)
 # NavBar
 
 introduccion = 'Introducción'
-punto_1 = 'Punto'
+punto_1 = 'Punto 1'
 punto_2 = 'Punto 2'
 punto_3 = 'Punto 3'
 punto_4 = 'Punto 4'
@@ -63,7 +63,7 @@ tabs = [
 
 option_data = [
     {'icon': "📜", 'label': introduccion},
-    {'icon': "1️⃣", 'label': punto_1},
+    {'icon': "🏆", 'label': punto_1},
     {'icon': "🏆", 'label': punto_2},
     {'icon': "🏆", 'label': punto_3},
     {'icon': "🏆", 'label': punto_4},
