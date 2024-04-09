@@ -60,11 +60,10 @@ def punto_uno():
         horizontal_orientation=True)
 
     if page == a:
-        st.write('hola')
-        # la gracia es que aqui en cada seccion solo se llame la funcion que sea el script independiente
+        st.markdown('##')
 
     elif page == b:
-        st.write('hol')
+        st.markdown('##')
 
     elif page == c:
-        st.write('hola')
+        st.markdown('##')
