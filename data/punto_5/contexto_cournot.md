@@ -19,11 +19,12 @@ El problema es calcular un equilibrio de Cournot para un duopolio, donde dos emp
 
 ### **Funciones de Costos:**
 
-Cada empresa tiene una función de costos, representada por \( C_i(q_i) = \frac{1}{2} c_i q_i \), donde \( c_i \) representa el costo marginal de la empresa \( i \).
+Cada empresa tiene una función de costos, representada por $ C_i(q_i) = \frac{1}{2} c_i q_i $, donde $ c_i $ representa el costo marginal de la empresa $ i $.
+
 
 ### **Función de Demanda Inversa:**
 
-La función de demanda inversa para el mercado total está representada por \( P(q) = q^{-1/γ} \), donde \( γ \) es un parámetro que indica la elasticidad de la demanda.
+La función de demanda inversa para el mercado total está representada por $ P(q) = q^{-1/γ} $, donde $ γ $ es un parámetro que indica la elasticidad de la demanda.
 
 ### **Ecuaciones de Equilibrio:**
 
@@ -40,4 +41,4 @@ Para resolver este problema mediante el método de Newton, se requiere una funci
 
 ### **Parámetros dados para el ejemplo:**
 
-\( γ = 0.6 \), \( c_1 = 0.6 \) y \( c_2 = 0.8 \).
+$γ = 0.6 $, $c_1 = 0.6 $ y $c_2 = 0.8 $.
