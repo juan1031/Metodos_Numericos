@@ -1,6 +1,31 @@
 import numpy as np
 from scipy.sparse import csc_matrix
 import math
+import sympy as sp
+import time
+
+
+def calculate_time(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        execution_time = end_time - start_time
+        print(
+            f"Tiempo de ejecución de {func.__name__}: {execution_time:.6f} segundos")
+        return result
+    return wrapper
+
+
+def check_diagonal_dominance(func):
+    def wrapper(*args, **kwargs):
+        A = args[1]
+        n = A.shape[0]
+        for i in range(n):
+            if np.abs(A[i, i]) < np.sum(np.abs(A[i, :])) - np.abs(A[i, i]):
+                raise ValueError("La matriz A no es diagonalmente dominante.")
+        return func(*args, **kwargs)
+    return wrapper
 
 
 class MetodosNumericos:
@@ -15,6 +40,12 @@ class MetodosNumericos:
         """
         self.f = f
         self.f_prima = f_prima
+
+    @staticmethod
+    def derivada(f):
+        x = sp.Symbol('x')
+        derivada = sp.diff(f(x), x)
+        return derivada
 
     @staticmethod
     def matriz_singular(matriz):
@@ -91,6 +122,27 @@ class MetodosNumericos:
             p0 = p1
         raise ValueError(
             'El método no convergió después de {} iteraciones'.format(max_iter))
+
+    # def punto_fijo(self, p0, tol=1e-6, max_iter=100):
+    #     """
+    #     Método de punto fijo para encontrar la raíz de la función.
+
+    #     Parameters:
+    #     - p0: Punto inicial.
+    #     - tol: Tolerancia, criterio de parada del algoritmo.
+    #     - max_iter: Número máximo de iteraciones permitidas.
+
+    #     Returns:
+    #     - La raíz encontrada.
+    #     """
+
+    #     for i in range(max_iter):
+    #         p1 = self.f(p0)
+    #         if abs(p1 - p0) < tol:
+    #             return p1
+    #         p0 = p1
+    #     raise ValueError(
+    #         'El método no convergió después de {} iteraciones'.format(max_iter))
 
     def diagonal(self, A, b):
         if A.shape[0] == A.shape[1]:
@@ -232,3 +284,39 @@ class MetodosNumericos:
         print('\nMatriz R:\n', R.round(7))
 
         return Q, R
+
+    # Ayuda: https://en.wikipedia.org/wiki/Jacobi_method
+    @check_diagonal_dominance
+    @calculate_time
+    def jacobi(self, A, b, x=None, max_iter=1000, tolerance=1e-10):
+        n = A.shape[0]
+        if x is None:
+            x = np.zeros(n)
+        for _ in range(max_iter):
+            x_new = np.zeros(n)
+            for i in range(n):
+                s1 = np.dot(A[i, :i], x[:i])
+                s2 = np.dot(A[i, i + 1:], x[i + 1:])
+                x_new[i] = (b[i] - s1 - s2) / A[i, i]
+            if np.allclose(x, x_new, atol=tolerance, rtol=0.):
+                break
+            x = x_new
+        error = np.dot(A, x) - b
+        return x, np.dot(A, x), error
+
+    # Ayuda: http://blog.espol.edu.ec/analisisnumerico/gauss-seidel-ejemplo01/
+    @check_diagonal_dominance
+    @calculate_time
+    def gauss_seidel(self, A, b, x=None, max_iter=1000, tolerance=1e-10):
+        n = A.shape[0]
+        if x is None:
+            x = np.zeros(n)
+        for _ in range(max_iter):
+            for i in range(n):
+                suma = np.dot(A[i, :i], x[:i]) + \
+                    np.dot(A[i, i + 1:], x[i + 1:])
+                x[i] = (b[i] - suma) / A[i, i]
+            if np.allclose(A @ x, b, atol=tolerance, rtol=0.):
+                break
+        error = np.dot(A, x) - b
+        return x, np.dot(A, x), error
