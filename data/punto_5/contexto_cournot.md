@@ -1,5 +1,5 @@
 
-# **¿Qué es la Competencia de Cournot?**
+## **¿Qué es la Competencia de Cournot?**
 
 La competencia de Cournot es un modelo de mercado de oligopolio donde dos o más empresas producen el mismo producto y compiten por su cuota de mercado. En este modelo, las empresas deciden simultánea e independientemente la cantidad del producto que generarán, lo que determina el precio de mercado total.
 
@@ -15,30 +15,39 @@ La competencia de Cournot es un modelo de mercado de oligopolio donde dos o más
 
 ## **Problema Propuesto:**
 
-El problema es calcular un equilibrio de Cournot para un duopolio, donde dos empresas compiten por maximizar sus beneficios. Cada empresa debe encontrar la cantidad óptima de producción que maximice su beneficio neto, considerando la relación entre producción, precio y costos.
+Se busca encontrar la cantidad de producción óptima para dos firmas, de manera que ninguna tenga incentivos para cambiar su producción. Cada empresa enfrenta el dilema de que aumentar su producción puede incrementar sus ingresos al vender más, pero también puede reducir los precios debido a una mayor oferta en el mercado. Por lo tanto, el objetivo es determinar las cantidades de producción que maximicen el beneficio neto, considerando la relación entre producción, precio y costos.
 
-### **Funciones de Costos:**
+- ### **Funciones de Costos:**
 
 Cada empresa tiene una función de costos, representada por $ C_i(q_i) = \frac{1}{2} c_i q_i $, donde $ c_i $ representa el costo marginal de la empresa $ i $.
 
+- ### **Función de Demanda Inversa:**
 
-### **Función de Demanda Inversa:**
+$ P(q) = q^{-1/γ} $, esta función produce el precio de mercado, dada la oferta conjunta $q = q_1 +q_2$, donde $ γ $ es un parámetro que indica como reacciona la demanda del mercado a cambios en la cantidad total producida por ambas empresas. 
 
-La función de demanda inversa para el mercado total está representada por $ P(q) = q^{-1/γ} $, donde $ γ $ es un parámetro que indica la elasticidad de la demanda.
+- ### **Función de Beneficio:**
 
-### **Ecuaciones de Equilibrio:**
+La ecuación de beneficio para una empresa en particular se deriva de la función de ingresos totales y la función de costos totales. 
 
-Para encontrar el equilibrio de Cournot, se deben satisfacer las siguientes ecuaciones de optimización de beneficios para cada empresa:
+$\pi_i =  P(q)*q_i - C_i(q_i) $
 
-\[
-\begin{align*}
-f_1(q) &= (q_1 + q_2)^{-1/γ} - \frac{1}{γ}(q_1 + q_2)^{-(1+1/γ)} - c_1q_1 = 0 \\
-f_2(q) &= (q_1 + q_2)^{-1/γ} - \frac{1}{γ}(q_1 + q_2)^{-(1+1/γ)} - c_2q_2 = 0
-\end{align*}
-\]
+es decir 
 
-Para resolver este problema mediante el método de Newton, se requiere una función que calcule tanto la función misma como el jacobiano.
+$\pi_i = (q_1 +q_2)^{-1/γ} - \frac{1}{2}c_i q_i $
 
-### **Parámetros dados para el ejemplo:**
+- ### **Condición de Estacionariedad**
 
-$γ = 0.6 $, $c_1 = 0.6 $ y $c_2 = 0.8 $.
+Se refiere a un equilibrio en el cual ninguna de las empresas tiene incentivos para cambiar su nivel de producción, dado el nivel de producción de las demás empresas en el mercado. Este equilibrio se alcanza cuando las empresas están maximizando sus beneficios con respecto a la cantidad producida. En términos matemáticos, la condición de estacionaridad se puede expresar como el punto en el cual la derivada del beneficio de cada empresa con respecto a su nivel de producción es igual a cero, es decir, donde la función de beneficio alcanza un máximo o un mínimo. Y esta representada como:
+
+$f_i(q) = (q_1 + q_2)^{-1/γ} - \frac{1}{γ}(q_1 + q_2)^{-(1/γ+1)} q_i-\frac{1}{2}c_i  = 0$
+
+Para resolver el problema, se crea una función que recibe como parámetros la funcion de costos de cada una de las empresas ($c_1$ y $c_2$), además de recibir el valor de $ γ $. A continuación un ejemplo: 
+
+
+#### **Parámetros dados para el ejemplo:**
+
+$c_1 = 0.6 $ y $c_2 = 0.8 $, $γ = 0.6 $.
+
+
+
+

@@ -39,7 +39,7 @@ class MetodosNumericos:
         - f_prima: Derivada de la función (opcional, solo necesario para el método de Newton).
         """
         self.f = f
-        self.f_prima = f_prima
+        self.f_prima = f_prima 
 
     @staticmethod
     def derivada(f):
@@ -122,6 +122,7 @@ class MetodosNumericos:
             p0 = p1
         raise ValueError(
             'El método no convergió después de {} iteraciones'.format(max_iter))
+    
 
     # def punto_fijo(self, p0, tol=1e-6, max_iter=100):
     #     """
