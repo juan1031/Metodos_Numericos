@@ -53,6 +53,9 @@ def punto_dos():
     col1, _, col2 = st.columns([1, 0.05, 1.5])
     # Pedir al usuario el intervalo para el método de bisección
     with col1:
+        mn = MetodosNumericos(f=lambda x: np.exp(x) - 2*(1 - x),
+                              f_prima=lambda x: np.exp(x) + 2)
+
         intervalo_biseccion = st.slider(
             "Intervalo para Bisección", 0.0, 3.0, (0.0, 3.0), 0.1)
 
@@ -112,6 +115,69 @@ def punto_dos():
         ''',
     )
 
+    col1, _, col2 = st.columns([1, 0.05, 1.5])
+    # Pedir al usuario el intervalo para el método de bisección
+    with col1:
+
+        def f(x): return x**3 + x - 7
+
+        mn = MetodosNumericos(f=f, f_prima=lambda x: 3*x**2 + 1)
+
+        intervalo_biseccion = st.slider(
+            "Intervalo para Bisección", 0.0, 3.0, (0.0, 3.0), 0.1, key="biseccion_slider2")
+
+        # Pedir al usuario el intervalo para el método de la secante
+        intervalo_secante = st.slider(
+            "Intervalo para Secante", 0.0, 3.0, (0.0, 3.0), 0.1, key="secante_slider2")
+
+        # Pedir al usuario el punto inicial para el método de Newton
+        p0_newton = st.number_input(
+            "Punto inicial para Newton", value=0.0, step=0.1, key="newton_input2")
+
+        # Pedir al usuario la tolerancia
+        tolerancia = st.number_input(
+            "Tolerancia", value=1e-6, format="%e", step=1e-7, key="tolerancia2")
+
+        # Pedir al usuario el número máximo de iteraciones
+        max_iter = st.number_input(
+            "Número máximo de iteraciones", value=100, step=10, key="maxiter2")
+
+        resultado_biseccion, tiempo_biseccion, resultado_secante, tiempo_secante, resultado_newton, tiempo_newton = mn.comparar_metodos(
+            intervalo_biseccion, intervalo_secante, p0_newton, tolerancia, max_iter)
+
+        error_relativo_biseccion = resultado_biseccion[1]
+        error_relativo_secante = resultado_secante[1]
+        error_relativo_newton = resultado_newton[1]
+
+        chart2 = PlotlyChart(error_relativo_biseccion, error_relativo_secante, error_relativo_newton,
+                             tiempo_biseccion, tiempo_secante, tiempo_newton)
+
+    with col2:
+        chart2.show()
+
+    error_relativo_biseccion = abs(resultado_biseccion[0]-1.7)/abs(1.7)
+    error_relativo_secante = abs(resultado_secante[0]-1.7)/abs(1.7)
+    error_relativo_newton = abs(resultado_newton[0]-1.7)/abs(1.7)
+
+    chart2_2 = PlotlyChart(error_relativo_biseccion, error_relativo_secante, error_relativo_newton,
+                           tiempo_biseccion, tiempo_secante, tiempo_newton)
+    chart2_2.show()
+
+    with col1:
+        st.plotly_chart(mn.plot_function())
+
+    with col2:
+        st.markdown(
+            '''
+            <p style="font-family: Arial; font-size: 20px; font-weight: bold; text-align: left;">
+            <b>Análisis</b>
+            ''',
+            unsafe_allow_html=True
+        )
+        st.markdown(
+            text1,
+            unsafe_allow_html=True
+        )
     # c) Halle la raíz positiva de la ecuación x = 5(1 − e^−x ) con cinco decimales de aproximación
     st.subheader(
         '''
