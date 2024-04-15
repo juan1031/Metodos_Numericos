@@ -39,7 +39,17 @@ class MetodosNumericos:
         - f_prima: Derivada de la función (opcional, solo necesario para el método de Newton).
         """
         self.f = f
-        self.f_prima = f_prima 
+        self.f_prima = f_prima
+
+    def calcular_tiempo_ejecucion(self, metodo, *args, **kwargs):
+        start_time = time.time()
+        resultado = metodo(*args, **kwargs)
+        end_time = time.time()
+        tiempo_ejecucion = end_time - start_time
+        return resultado, tiempo_ejecucion
+
+    def calcular_error_relativo(self, aproximacion, valor_exacto):
+        return np.abs(aproximacion - valor_exacto) / np.abs(valor_exacto)
 
     @staticmethod
     def derivada(f):
@@ -51,22 +61,51 @@ class MetodosNumericos:
     def matriz_singular(matriz):
         return "La matriz es singular" if np.linalg.det(matriz) == 0 else "La matriz no es singular"
 
-    def biseccion(self, a, b, tol=1e-6):
+    def comparar_metodos(self, intervalo_biseccion, intervalo_secante, p0_newton, tolerancia, max_iter):
         """
-        Método de bisección para encontrar la raíz de la función en el intervalo [a, b].
+        Compara los métodos de bisección, secante y Newton para encontrar la raíz de la función.
 
         Parameters:
-        - a: Extremo izquierdo del intervalo.
-        - b: Extremo derecho del intervalo.
-        - tol: Tolerancia, criterio de parada del algoritmo.
+        - intervalo_biseccion: Tupla que representa el intervalo inicial para el método de bisección.
+        - intervalo_secante: Tupla que representa el intervalo inicial para el método de la secante.
+        - p0_newton: Punto inicial para el método de Newton.
+        - tolerancia: Tolerancia para el criterio de parada de los métodos.
+        - max_iter: Número máximo de iteraciones permitidas.
 
         Returns:
-        - La raíz encontrada.
+        - resultado_biseccion: Raíz encontrada por el método de bisección.
+        - tiempo_biseccion: Tiempo de ejecución del método de bisección.
+        - resultado_secante: Raíz encontrada por el método de la secante.
+        - tiempo_secante: Tiempo de ejecución del método de la secante.
+        - resultado_newton: Raíz encontrada por el método de Newton.
+        - tiempo_newton: Tiempo de ejecución del método de Newton.
         """
+        # Método de bisección
+        resultado_biseccion, tiempo_biseccion = self.calcular_tiempo_ejecucion(
+            self.biseccion, intervalo_biseccion[0], intervalo_biseccion[1], tolerancia, max_iter)
+
+        # Método de la secante
+        resultado_secante, tiempo_secante = self.calcular_tiempo_ejecucion(
+            self.secante, intervalo_secante[0], intervalo_secante[1], tolerancia, max_iter)
+
+        # Método de Newton
+        resultado_newton, tiempo_newton = self.calcular_tiempo_ejecucion(
+            self.newton, p0_newton, tolerancia, max_iter)
+
+        return resultado_biseccion, tiempo_biseccion, resultado_secante, tiempo_secante, resultado_newton, tiempo_newton
+
+    def biseccion(self, a, b, tol=1e-6, max_iter=100):
+        """
+        Método de bisección para encontrar la raíz de la función en el intervalo [a, b].
+        """
+        aproximaciones = []
         fa, fb = self.f(a), self.f(b)
 
-        while abs(a - b) > tol:
+        iter_count = 0  # Contador de iteraciones
+
+        while abs(a - b) > tol and iter_count < max_iter:
             x_med = (a + b) / 2
+            aproximaciones.append(x_med)
             f_med = self.f(x_med)
 
             if f_med == 0:
@@ -76,29 +115,24 @@ class MetodosNumericos:
             else:
                 b, fb = x_med, f_med
 
-        return (a + b) / 2
+            iter_count += 1  # Incrementar el contador de iteraciones
+
+        return (a + b) / 2, self.calcular_error_relativo(aproximaciones[-2], aproximaciones[-1])
 
     def secante(self, p0, p1, tol=1e-6, max_iter=100):
         """
         Método de la secante para encontrar la raíz de la función.
-
-        Parameters:
-        - p0: Primer punto inicial.
-        - p1: Segundo punto inicial.
-        - tol: Tolerancia, criterio de parada del algoritmo.
-        - max_iter: Número máximo de iteraciones permitidas.
-
-        Returns:
-        - La raíz encontrada.
         """
+        aproximaciones = [p0, p1]
         for i in range(max_iter):
             f0, f1 = self.f(p0), self.f(p1)
             if f0 == f1:
                 raise ValueError(
                     'La función produce la misma salida para los dos puntos iniciales')
             p2 = (p0 * f1 - p1 * f0) / (f1 - f0)
+            aproximaciones.append(p2)
             if abs(p2 - p1) < tol:
-                return p2
+                return p2, self.calcular_error_relativo(aproximaciones[-2], aproximaciones[-1])
             p0, p1 = p1, p2
         raise ValueError(
             'El método no convergió después de {} iteraciones'.format(max_iter))
@@ -106,23 +140,16 @@ class MetodosNumericos:
     def newton(self, p0, tol=1e-6, max_iter=100):
         """
         Método de Newton para encontrar la raíz de la función.
-
-        Parameters:
-        - p0: Punto inicial.
-        - tol: Tolerancia, criterio de parada del algoritmo.
-        - max_iter: Número máximo de iteraciones permitidas.
-
-        Returns:
-        - La raíz encontrada.
         """
+        aproximaciones = [p0]
         for i in range(max_iter):
             p1 = p0 - self.f(p0) / self.f_prima(p0)
+            aproximaciones.append(p1)
             if abs(p1 - p0) < tol:
-                return p1
+                return p1, self.calcular_error_relativo(aproximaciones[-2], aproximaciones[-1])
             p0 = p1
         raise ValueError(
             'El método no convergió después de {} iteraciones'.format(max_iter))
-    
 
     # def punto_fijo(self, p0, tol=1e-6, max_iter=100):
     #     """
