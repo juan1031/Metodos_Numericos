@@ -1,6 +1,7 @@
 import streamlit as st
 import numpy as np
 import plotly.graph_objects as go
+from streamlit_extras.metric_cards import style_metric_cards
 
 from components.PlotlyChart import PlotlyChart
 from components.markdown.markdown import Markdown
@@ -62,6 +63,7 @@ def punto_dos():
         # Pedir al usuario el intervalo para el método de la secante
         intervalo_secante = st.slider(
             "Intervalo para Secante", 0.0, 3.0, (0.0, 3.0), 0.1)
+    with col2:
 
         # Pedir al usuario el punto inicial para el método de Newton
         p0_newton = st.number_input(
@@ -85,6 +87,17 @@ def punto_dos():
 
         chart = PlotlyChart(error_relativo_biseccion, error_relativo_secante, error_relativo_newton,
                             tiempo_biseccion, tiempo_secante, tiempo_newton)
+
+    col1, _, col2 = st.columns([1, 0.05, 1.5])
+
+    with col1:
+        st.write('Resultado de las aproximaciones según los metodos:')
+        st.metric(
+            'Bisección:', value=resultado_biseccion[0])
+        st.metric('Secante:', value=resultado_secante[0])
+        st.metric('Newton R:', value=resultado_newton[0])
+        style_metric_cards(background_color='rgba(0,0,0,0)',
+                           border_left_color="#003C6F", border_color="#003C6F", box_shadow="blue")
 
     with col2:
         chart.show()
