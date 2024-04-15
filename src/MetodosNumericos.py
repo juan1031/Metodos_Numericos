@@ -3,6 +3,7 @@ from scipy.sparse import csc_matrix
 import math
 import sympy as sp
 import time
+import plotly.graph_objects as go
 
 
 def calculate_time(func):
@@ -60,6 +61,40 @@ class MetodosNumericos:
     @staticmethod
     def matriz_singular(matriz):
         return "La matriz es singular" if np.linalg.det(matriz) == 0 else "La matriz no es singular"
+
+    def plot_function(self):
+
+        func = self.f
+        x_values = np.linspace(-10, 10, 1000)
+        y_values = func(x_values)
+
+        fig = go.Figure()
+
+        fig.add_trace(go.Scatter(x=x_values, y=y_values, mode='lines', name='Función',
+                                 line=dict(color='blue', width=2)))
+
+        fig.update_layout(
+            title=dict(
+                text='Gráfico de la Función',
+                font=dict(color='black', size=20),
+                x=0.2,
+                y=0.9
+            ),
+            width=400,
+            height=400,
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            xaxis_showgrid=True,
+            yaxis_showgrid=True,
+            xaxis_ticks='outside',
+            yaxis_ticks='outside',
+            xaxis_linecolor='black',
+            yaxis_linecolor='black',
+            xaxis_gridcolor='rgba(255, 255, 255, 0.1)',
+            yaxis_gridcolor='rgba(255, 255, 255, 0.1)'
+        )
+
+        return fig
 
     def comparar_metodos(self, intervalo_biseccion, intervalo_secante, p0_newton, tolerancia, max_iter):
         """
