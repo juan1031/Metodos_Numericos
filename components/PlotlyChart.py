@@ -45,13 +45,14 @@ class PlotlyChart:
                 y=0.9
             ),
             showlegend=True,
-            legend=dict(orientation='h', font=dict(color='black')),
+            legend=dict(orientation='h', font=dict(
+                color='black'), x=0, y=1.1),
             yaxis=dict(
                 title=dict(text="Error Relativo"),
                 side="left",
             ),
-            width=500,
-            height=400,
+            width=550,
+            height=500,
             # Diseño financiero
             paper_bgcolor='rgba(0,0,0,0)',  # Fondo del papel transparente
             plot_bgcolor='rgba(0,0,0,0)',   # Fondo del gráfico transparente

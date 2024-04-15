@@ -80,7 +80,7 @@ class MetodosNumericos:
                 x=0.2,
                 y=0.9
             ),
-            width=400,
+            width=450,
             height=400,
             paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor='rgba(0,0,0,0)',
