@@ -51,7 +51,7 @@ class PlotlyChart:
                 title=dict(text="Error Relativo"),
                 side="left",
             ),
-            width=550,
+            width=650,
             height=500,
             # Diseño financiero
             paper_bgcolor='rgba(0,0,0,0)',  # Fondo del papel transparente

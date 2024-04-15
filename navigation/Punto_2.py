@@ -50,7 +50,7 @@ def punto_dos():
 
     st.write('Configuración de los Parámetros')
 
-    col1, _, col2 = st.columns([1, 0.05, 1])
+    col1, _, col2 = st.columns([1, 0.05, 1.5])
     # Pedir al usuario el intervalo para el método de bisección
     with col1:
         intervalo_biseccion = st.slider(
@@ -86,7 +86,7 @@ def punto_dos():
     with col2:
         chart.show()
 
-    col1, _, col2 = st.columns([1, 0.05, 1])
+    col1, _, col2 = st.columns([1, 0.05, 1.5])
 
     with col1:
         st.plotly_chart(mn.plot_function())

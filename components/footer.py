@@ -2,7 +2,7 @@ footer_style = f"""
     <style>
         MainMenu {{visibility: hidden;}}
         footer {{visibility: hidden;}}
-        footer:after {{ 
+        footer:after {{
             visibility: visible;
             display: block;
             position: relative;

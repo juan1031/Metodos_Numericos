@@ -62,25 +62,30 @@ tabs = [
 ]
 
 option_data = [
-    {'icon': "📜", 'label': introduccion},
-    {'icon': "🏆", 'label': punto_1},
-    {'icon': "🏆", 'label': punto_2},
-    {'icon': "🏆", 'label': punto_3},
-    {'icon': "🏆", 'label': punto_4},
-    {'icon': "🏆", 'label': punto_5}
-
+    {'icon': "📜", 'label': 'Introducción'},
+    {'icon': "", 'label': 'Punto 1'},
+    {'icon': "", 'label': 'Punto 2'},
+    {'icon': "", 'label': 'Punto 3'},
+    {'icon': "", 'label': 'Punto 4'},
+    {'icon': "", 'label': 'Punto 5'}
 ]
 
-over_theme = {'txc_inactive': 'black', 'menu_background': '#81c3d7',
-              'txc_active': 'white', 'option_active': '#16425b'}
-font_fmt = {'font-class': 'h3', 'font-size': '60%'}
+# Define el tema para el NavBar
+theme = {
+    'menu_background': '#1a1a1a',  # Color de fondo del menú
+    'txc_inactive': '#999999',  # Color del texto de las pestañas inactivas
+    'txc_active': 'white',  # Color del texto de la pestaña activa
+    'option_active': '#007bff'  # Color de la pestaña activa
+}
 
+# Crea el NavBar con los datos y el tema especificados
 chosen_tab = hc.option_bar(
     option_definition=option_data,
     title='',
     key='PrimaryOptionx',
-    override_theme=over_theme,
+    override_theme=theme,
     horizontal_orientation=True)
+
 
 if chosen_tab == introduccion:
     intro_page()

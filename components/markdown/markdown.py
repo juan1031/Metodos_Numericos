@@ -8,8 +8,9 @@ class Markdown:
         Si tab=False no va tener identación.
         '''
         if tab:
-            layout = f'<div style="text-align: justify"><p style="text-indent: 2em">{self.texto}</p></div>'
+            layout = f'<div style="text-align: justify; max-width: 100%; display: block;">' \
+                     f'<p style="text-indent: 2em">{self.texto}</p></div>'
         else:
-            layout = f"""<div style="text-align: justify;">{self.texto}</div>"""
+            layout = f"""<div style="text-align: justify; max-width: 100%; display: block;">{self.texto}</div>"""
 
         return layout
