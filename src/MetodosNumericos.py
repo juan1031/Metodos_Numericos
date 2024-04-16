@@ -31,7 +31,7 @@ def check_diagonal_dominance(func):
 
 class MetodosNumericos:
 
-    def __init__(self, f=None, f_prima=None):
+    def __init__(self, f=None, f_prima=None, cournot_duopolio=None, matriz_jacobiana=None):
         """
         Inicializa la clase con la función objetivo y su derivada (si es necesario).
 
@@ -41,6 +41,8 @@ class MetodosNumericos:
         """
         self.f = f
         self.f_prima = f_prima
+        self.cournot_duopolio = cournot_duopolio
+        self.matriz_jacobiana = matriz_jacobiana
 
     def calcular_tiempo_ejecucion(self, metodo, *args, **kwargs):
         start_time = time.time()
@@ -185,6 +187,34 @@ class MetodosNumericos:
             p0 = p1
         raise ValueError(
             'El método no convergió después de {} iteraciones'.format(max_iter))
+    
+    def newton_multivariable(self, p0, c1, c2, gamma, tol=1e-6, max_iter=100):
+        """
+        Método de Newton para encontrar las raíces de un sistema de ecuaciones.
+        """
+        aproximaciones = [p0]
+        for i in range(max_iter):
+            # Calculamos el valor del sistema de ecuaciones en el punto actual
+            f_value = np.array(self.cournot_duopolio(*p0, c1, c2, gamma))
+            
+            # Si el valor es lo suficientemente cercano a cero, terminamos
+            if np.all(np.abs(f_value) < tol):
+                return p0, np.array(aproximaciones)
+            
+            # Calculamos la matriz jacobiana en el punto actual
+            J_value = self.matriz_jacobiana(*p0, c1, c2, gamma)
+            
+            # Calculamos el siguiente paso utilizando la fórmula de Newton-Raphson para sistemas
+            p1 = p0 - np.linalg.inv(J_value) @ f_value
+            
+            aproximaciones.append(p1)
+            
+            # Si la norma de la diferencia entre p1 y p0 es menor que la tolerancia, terminamos
+            if np.linalg.norm(p1 - p0) < tol:
+                return p1, np.array(aproximaciones)
+            
+            p0 = p1
+        raise ValueError('El método no convergió después de {} iteraciones'.format(max_iter))
 
     # def punto_fijo(self, p0, tol=1e-6, max_iter=100):
     #     """
