@@ -1,4 +1,3 @@
-
 import streamlit as st
 import numpy as np
 from streamlit_extras.metric_cards import style_metric_cards
@@ -9,11 +8,11 @@ from components.markdown.markdown import Markdown
 from src.MetodosNumericos import MetodosNumericos
 
 
-def punto2_a():
+def punto2_b():
 
     st.subheader(
         '''
-        a) La solución numérica a la ecuación $e^x = 2(1 − x)$. Ayuda: está en el intervalo [0, 3].
+        b) Una aproximación numérica de la raiz de $f(x) = x^{3}+x-7$. Luego con 1.7 (raiz de f) halle el error relativo de su aproximación
         '''
     )
 
@@ -22,15 +21,15 @@ def punto2_a():
     col1, _, col2 = st.columns([1, 0.05, 1.5])
     # Pedir al usuario el intervalo para el método de bisección
     with col1:
-        mn = MetodosNumericos(f=lambda x: np.exp(x) - 2*(1 - x),
-                              f_prima=lambda x: np.exp(x) + 2)
+        mn = MetodosNumericos(f=lambda x: x**3+x-7,
+                              f_prima=lambda x: 3*x**2+1)
 
         intervalo_biseccion = st.slider(
-            "Intervalo para Bisección", 0.0, 3.0, (0.0, 3.0), 0.1)
+            "Intervalo para Bisección", -3.0, 3.0, (0.0, 3.0), 0.1)
 
         # Pedir al usuario el intervalo para el método de la secante
         intervalo_secante = st.slider(
-            "Intervalo para Secante", 0.0, 3.0, (0.0, 3.0), 0.1)
+            "Intervalo para Secante", -3.0, 3.0, (0.0, 3.0), 0.1)
     with col2:
 
         # Pedir al usuario el punto inicial para el método de Newton
@@ -49,9 +48,9 @@ def punto2_a():
         resultado_biseccion, tiempo_biseccion, resultado_secante, tiempo_secante, resultado_newton, tiempo_newton = mn.comparar_metodos(
             intervalo_biseccion, intervalo_secante, p0_newton, tolerancia, max_iter)
 
-        error_relativo_biseccion = resultado_biseccion[1]
-        error_relativo_secante = resultado_secante[1]
-        error_relativo_newton = resultado_newton[1]
+        error_relativo_biseccion = abs(resultado_biseccion[0]-1.7)/1.7
+        error_relativo_secante = abs(resultado_secante[0]-1.7)/1.7
+        error_relativo_newton = abs(resultado_newton[0]-1.7)/1.7
 
         chart = PlotlyChart(error_relativo_biseccion, error_relativo_secante, error_relativo_newton,
                             tiempo_biseccion, tiempo_secante, tiempo_newton)
@@ -77,7 +76,7 @@ def punto2_a():
 
     with col2:
         st.markdown(
-            '''
+            f'''
             <p style="font-family: Arial; font-size: 20px; font-weight: bold; text-align: left;">
             <b>Análisis</b>
             ''',
@@ -85,15 +84,11 @@ def punto2_a():
         )
         st.markdown(
             f'''
-            Los resultados obtenidos de las aproximaciones utilizando los métodos de bisección, 
-            secante y Newton-Raphson con un máximo de **{max_iter}** iteraciones para cada metodo muestran que cada método produce una estimación de la raíz, siendo
-            todas bastante cercanas entre sí. Sin embargo, al observar los errores relativos asociados 
-            a cada método, podemos notar diferencias significativas en su precisión. El método de bisección tiene un 
-            error relativo de aproximadamente **{error_relativo_biseccion}** unidades, 
-            lo que indica una precisión moderada pero segura. Por otro lado, tanto el método de secante 
-            como el de Newton-Raphson muestran errores relativos mucho más bajos, de alrededor de **{error_relativo_secante}**
-            y **{error_relativo_newton}** unidades respectivamente. Esto sugiere que, aunque todos los métodos ofrecen una aproximación
-            cercana, los métodos de secante y sobre todo Newton-Raphson son notablemente más precisos en este caso.
+            En esta ocasión, contábamos con el valor real de la raíz de la función, lo que nos permitió 
+            calcular el error relativo de manera precisa. Resulta interesante observar que, a pesar de 
+            esta simulación con un valor real predeterminado, los errores relativos obtenidos para cada 
+            método fueron bastante similares. Sin embargo, al analizar el tiempo de ejecución, queda 
+            claro que el método de Newton-Raphson sigue siendo más rápido que el resto..
             ''',
         )
 

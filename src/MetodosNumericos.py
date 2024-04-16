@@ -64,10 +64,13 @@ class MetodosNumericos:
     def matriz_singular(matriz):
         return "La matriz es singular" if np.linalg.det(matriz) == 0 else "La matriz no es singular"
 
-    def plot_function(self):
+    def plot_function(self, intervalo_x=None):
 
         func = self.f
-        x_values = np.linspace(-10, 10, 1000)
+        if intervalo_x is None:
+            x_values = np.linspace(-10, 10, 1000)
+        else:
+            x_values = np.linspace(intervalo_x[0], intervalo_x[1], 1000)
         y_values = func(x_values)
 
         fig = go.Figure()
@@ -146,7 +149,7 @@ class MetodosNumericos:
             f_med = self.f(x_med)
 
             if f_med == 0:
-                return x_med
+                return x_med, 0 if iter_count == 0 else self.calcular_error_relativo(aproximaciones[-2], aproximaciones[-1])
             elif fa * f_med > 0:
                 a, fa = x_med, f_med
             else:

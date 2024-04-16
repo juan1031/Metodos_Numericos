@@ -1,4 +1,3 @@
-
 import streamlit as st
 import numpy as np
 from streamlit_extras.metric_cards import style_metric_cards
@@ -9,11 +8,11 @@ from components.markdown.markdown import Markdown
 from src.MetodosNumericos import MetodosNumericos
 
 
-def punto2_a():
+def punto2_d():
 
     st.subheader(
         '''
-        a) La solución numérica a la ecuación $e^x = 2(1 − x)$. Ayuda: está en el intervalo [0, 3].
+        d) Halle la raíz de la función $f(x)=x-3e^{-x}$ con 6 decimales de aproximación.
         '''
     )
 
@@ -22,15 +21,15 @@ def punto2_a():
     col1, _, col2 = st.columns([1, 0.05, 1.5])
     # Pedir al usuario el intervalo para el método de bisección
     with col1:
-        mn = MetodosNumericos(f=lambda x: np.exp(x) - 2*(1 - x),
-                              f_prima=lambda x: np.exp(x) + 2)
+        mn = MetodosNumericos(f=lambda x: x-3*np.exp(-x),
+                              f_prima=lambda x: 1+3*np.exp(-x))
 
         intervalo_biseccion = st.slider(
-            "Intervalo para Bisección", 0.0, 3.0, (0.0, 3.0), 0.1)
+            "Intervalo para Bisección", -3.0, 3.0, (0.0, 1.8), 0.1)
 
         # Pedir al usuario el intervalo para el método de la secante
         intervalo_secante = st.slider(
-            "Intervalo para Secante", 0.0, 3.0, (0.0, 3.0), 0.1)
+            "Intervalo para Secante", -3.0, 3.0, (0.0, 1.8), 0.1)
     with col2:
 
         # Pedir al usuario el punto inicial para el método de Newton
@@ -61,9 +60,9 @@ def punto2_a():
     with col1:
         st.write('Resultado de las aproximaciones según los metodos:')
         st.metric(
-            'Bisección:', value=resultado_biseccion[0])
-        st.metric('Secante:', value=resultado_secante[0])
-        st.metric('Newton R:', value=resultado_newton[0])
+            'Bisección:', value=round(resultado_biseccion[0], 6))
+        st.metric('Secante:', value=round(resultado_secante[0], 6))
+        st.metric('Newton R:', value=round(resultado_newton[0], 6))
         style_metric_cards(background_color='rgba(0,0,0,0)',
                            border_left_color="#003C6F", border_color="#003C6F", box_shadow="blue")
 
@@ -73,7 +72,7 @@ def punto2_a():
     col1, _, col2 = st.columns([1, 0.05, 1.5])
 
     with col1:
-        st.plotly_chart(mn.plot_function())
+        st.plotly_chart(mn.plot_function([-10, 3]))
 
     with col2:
         st.markdown(
@@ -85,16 +84,8 @@ def punto2_a():
         )
         st.markdown(
             f'''
-            Los resultados obtenidos de las aproximaciones utilizando los métodos de bisección, 
-            secante y Newton-Raphson con un máximo de **{max_iter}** iteraciones para cada metodo muestran que cada método produce una estimación de la raíz, siendo
-            todas bastante cercanas entre sí. Sin embargo, al observar los errores relativos asociados 
-            a cada método, podemos notar diferencias significativas en su precisión. El método de bisección tiene un 
-            error relativo de aproximadamente **{error_relativo_biseccion}** unidades, 
-            lo que indica una precisión moderada pero segura. Por otro lado, tanto el método de secante 
-            como el de Newton-Raphson muestran errores relativos mucho más bajos, de alrededor de **{error_relativo_secante}**
-            y **{error_relativo_newton}** unidades respectivamente. Esto sugiere que, aunque todos los métodos ofrecen una aproximación
-            cercana, los métodos de secante y sobre todo Newton-Raphson son notablemente más precisos en este caso.
-            ''',
+            {error_relativo_biseccion}, {error_relativo_secante}, {error_relativo_newton}
+            '''
         )
 
     st.divider()

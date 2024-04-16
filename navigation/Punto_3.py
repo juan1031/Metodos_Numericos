@@ -9,4 +9,5 @@ def punto_tres():
 
     st.markdown(
         '''
+        $f(x) = e^{−x} − x$
         ''')

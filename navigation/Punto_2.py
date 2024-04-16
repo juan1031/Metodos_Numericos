@@ -1,26 +1,40 @@
 import streamlit as st
 import hydralit_components as hc
 from components.punto_2.punto2_a import punto2_a
+from components.punto_2.punto2_b import punto2_b
+from components.punto_2.punto2_c import punto2_c
+from components.punto_2.punto2_d import punto2_d
+from components.markdown.markdown import Markdown
 
 
 def punto_dos():
+    file1 = open('./data/punto_2/intro.md').read()
+    text1 = Markdown(file1).show(tab=True)
+
+    st.markdown(
+        text1,
+        unsafe_allow_html=True
+    )
 
     # NavBar
 
     a = 'A)'
     b = 'B)'
     c = 'C)'
+    d = 'D)'
 
     tabs = [
         a,
         b,
-        c
+        c,
+        d
     ]
 
     option_data = [
         {'icon': "", 'label': a},
         {'icon': "", 'label': b},
-        {'icon': "", 'label': c}
+        {'icon': "", 'label': c},
+        {'icon': "", 'label': d}
     ]
 
     # Define el tema para el NavBar
@@ -39,11 +53,11 @@ def punto_dos():
         override_theme=theme,
         horizontal_orientation=True)
 
-    # a) La solución numérica a la ecuación ex = 2(1 − x)
-
     if chosen_tab == a:
         punto2_a()
     if chosen_tab == b:
-        pass
+        punto2_b()
     if chosen_tab == c:
-        pass
+        punto2_c()
+    if chosen_tab == d:
+        punto2_d()
