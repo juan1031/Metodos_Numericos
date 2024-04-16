@@ -3,9 +3,9 @@
 #### Paso 1:
 Definir la ecuación que representa la condición de estacionaridad para cada empresa
 
-$f_1(q) = (q_1 + q_2)^{-1/γ} - \frac{1}{γ}(q_1 + q_2)^{-(1+1/γ)} q_1- c_1q_1 = 0$
+$f_1(q) = (q_1 + q_2)^{-1/γ} - \frac{1}{γ}(q_1 + q_2)^{-(1+1/γ)} q_1- \frac{1}{2}c_1 = 0$
 
-$f_2(q) = (q_1 + q_2)^{-1/γ} - \frac{1}{γ}(q_1 + q_2)^{-(1+1/γ)} q_2- c_2q_2 = 0$
+$f_2(q) = (q_1 + q_2)^{-1/γ} - \frac{1}{γ}(q_1 + q_2)^{-(1+1/γ)} q_2- \frac{1}{2}c_2 = 0$
 
 #### Paso 2:
 
