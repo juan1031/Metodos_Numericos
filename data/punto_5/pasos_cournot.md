@@ -25,11 +25,4 @@ Con estas funciones se construye la matriz jacobiana
 
 A = 
 
-| $\frac{\partial f_1}{\partial q_1}$ | $\frac{\partial f_1}{\partial q_2}$ |
-|:----------------------------------:|:----------------------------------:|
-| $\frac{\partial f_2}{\partial q_1}$ | $\frac{\partial f_2}{\partial q_2}$ |
-
-
-
-Y ahora resolvemos el sistema $Ax = b$
 
