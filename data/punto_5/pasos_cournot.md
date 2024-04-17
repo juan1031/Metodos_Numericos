@@ -21,8 +21,6 @@ $\frac{\partial f_2}{\partial q_2}= -q_2\left(-1 - \frac{1}{γ}\right)\left((q_1
 
 #### Paso 3:
 
-Con estas funciones se construye la matriz jacobiana
-
-A = 
+Para encontrar los puntos óptimos, necesitamos calcular las raíces de las funciones $f_1$ y $f_2$. Para esto, empleamos el método de Newton bivariado. En cada paso de este método, evaluamos las funciones y sus derivadas en los valores actuales de q1 y q2 (inicialmente asignados como supuestos). Luego, ajustamos estos valores en el método y así, hasta que alcancemos una convergencia dentro de una tolerancia predefinida o lleguemos al número máximo de iteraciones permitidas.
 
 

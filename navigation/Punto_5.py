@@ -22,18 +22,24 @@ def punto_cinco():
 
     col1, col2 = st.columns(2)
     with col1:
-        q1_0 = st.number_input("Cantidad inicial de la empresa 1:", min_value=0.0, max_value=1.0, value=0.6, step=0.01)
+        q1_0 = st.number_input("Cantidad inicial de la empresa 1:", min_value=0.0, max_value=1.0, value=0.5, step=0.01)
     with col2:
-        q2_0 = st.number_input("Cantidad inicial de la empresa 2:", min_value=0.0, max_value=1.0, value=0.8, step=0.01)
+        q2_0 = st.number_input("Cantidad inicial de la empresa 2:", min_value=0.0, max_value=1.0, value=0.5, step=0.01)
 
-
-    with st.expander("Calcular"):
+    if st.button("Calcular"):
         newton_solver = NewtonMethod(gamma, c1, c2)
-        q1, q2 = newton_solver.solve(q1_0, q1_0)  # Valores iniciales de q1 y q2
+        q1, q2 = newton_solver.solve(q1_0, q2_0)  # Valores iniciales de q1 y q2
         st.write("Cantidad óptima de producción para la empresa 1:", q1)
         st.write("Cantidad óptima de producción para la empresa 2:", q2)
 
-    if st.button("Ver pasos"):
+    st.divider()
+
+    with st.expander("Ver pasos"):
         st.markdown(file2)
 
-    st.divider()
+    with st.expander("Ver script de la clase NewtonMethod"):
+        with open("/home/luisa/Documents/Metodos/Metodos_Numericos/src/newton.py", "r") as file:
+            script_content = file.read()
+        st.code(script_content, language="python") 
+
+    
