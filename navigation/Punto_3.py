@@ -3,11 +3,9 @@ import streamlit as st
 
 def punto_tres():
 
-    # -------------------------------------------------------------
-    st.title("Punto 3")
-    # -------------------------------------------------------------
-
     st.markdown(
         '''
-        $f(x) = e^{−x} − x$
+        Hallar puntos criticos de forma numérica para las siguientes funciones:
         ''')
+    
+    
