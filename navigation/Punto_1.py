@@ -193,6 +193,7 @@ print("El valor de los dos pagos iguales que Pablo debe realizar es:", valor_pag
 
     if page == a:
         st.markdown(filea)
+        st.markdown()
         st.code(codea, language='python')
 
     elif page == b:
