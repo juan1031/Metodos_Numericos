@@ -154,7 +154,6 @@ print("El número de meses en que se debe realizar el pago es:", n_aproximado)
 print("Exactamente es en", dias_exactos, "días.")
 '''
 
-
     codec = '''
 class Punto3DeudaPablo:
     def __init__(self, tasa_interes):
@@ -203,4 +202,3 @@ print("El valor de los dos pagos iguales que Pablo debe realizar es:", valor_pag
     elif page == c:
         st.markdown(filec)
         st.code(codec, language='python')
-
