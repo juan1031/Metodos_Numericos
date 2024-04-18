@@ -44,6 +44,6 @@ def punto_cinco():
         st.markdown(file2)
 
     with st.expander("Ver script de la clase NewtonMethod"):
-        with open("/home/luisa/Documents/Metodos/Metodos_Numericos/src/newton.py", "r") as file:
+        with open("./src/newton.py", "r") as file:
             script_content = file.read()
         st.code(script_content, language="python")
