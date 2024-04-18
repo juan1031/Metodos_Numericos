@@ -95,10 +95,10 @@ saldo_final_deseado = 300000
 vp_calculator = ValorPresente(tasa_mensual, retiros, saldo_final_deseado)
 
 P0 = 100000
-depositado dentro de diez meses y aún se tenga un saldo de `$ 300.000 ` dentro de 12 meses?
 valor_presente = vp_calculator.newton_raphson(P0)
 
-print("Valor presente (P):", valor_presente)'''
+print("Valor presente (P):", valor_presente)
+'''
 
     codeb = '''
 import math
