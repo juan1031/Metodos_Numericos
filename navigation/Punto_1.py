@@ -41,7 +41,7 @@ def punto_uno():
     st.markdown(file1)
 
     st.markdown(file2)
-    
+
     st.markdown(file3)
 
     st.markdown(file4)
@@ -60,7 +60,6 @@ def punto_uno():
         key='PrimaryOptionx2',
         override_theme=over_theme,
         horizontal_orientation=True)
-    
 
     codea = '''
 class ValorPresente:
@@ -193,7 +192,6 @@ print("El valor de los dos pagos iguales que Pablo debe realizar es:", valor_pag
 
     if page == a:
         st.markdown(filea)
-        st.markdown()
         st.code(codea, language='python')
 
     elif page == b:
