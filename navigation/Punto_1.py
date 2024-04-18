@@ -21,8 +21,8 @@ tabs = [
 ]
 
 option_data = [
-    {'icon': "📜", 'label': a},
-    {'icon': "1️⃣", 'label': b},
+    {'icon': "🏆", 'label': a},
+    {'icon': "🏆", 'label': b},
     {'icon': "🏆", 'label': c}
 ]
 
