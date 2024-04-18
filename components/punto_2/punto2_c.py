@@ -72,7 +72,7 @@ def punto2_c():
     col1, _, col2 = st.columns([1, 0.05, 1.5])
 
     with col1:
-        st.plotly_chart(mn.plot_function([-1, 10]))
+        st.plotly_chart(mn.plot_function([-1, 2]))
 
     with col2:
         st.markdown(

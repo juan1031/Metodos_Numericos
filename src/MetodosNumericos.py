@@ -186,7 +186,8 @@ class MetodosNumericos:
             p1 = p0 - self.f(p0) / self.f_prima(p0)
             aproximaciones.append(p1)
             if abs(p1 - p0) < tol:
-                return p1, self.calcular_error_relativo(aproximaciones[-2], aproximaciones[-1])
+                # self.calcular_error_relativo(aproximaciones[-2], aproximaciones[-1])
+                return p1, aproximaciones
             p0 = p1
         raise ValueError(
             'El método no convergió después de {} iteraciones'.format(max_iter))
