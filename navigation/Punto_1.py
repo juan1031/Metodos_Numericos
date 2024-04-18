@@ -70,9 +70,7 @@ class ValorPresente:
         self.saldo_final_deseado = saldo_final_deseado
 
     def calcular_valor_presente(self, P):
-        return sum(retiro / ((1 + self.tasa_mensual) ** mes) for mes, retiro in self.retiros.items()) + \
-               (0.5 * P / ((1 + self.tasa_mensual) ** 10)) + \
-               (self.saldo_final_deseado / ((1 + self.tasa_mensual) ** 12)) - P
+        return sum(retiro / ((1 + self.tasa_mensual) ** mes) for mes, retiro in self.retiros.items()) + (0.5 * P / ((1 + self.tasa_mensual) ** 10)) + (self.saldo_final_deseado / ((1 + self.tasa_mensual) ** 12)) - P
 
     def newton_raphson(self, P0, tol=1e-6, max_iter=100):
         """
