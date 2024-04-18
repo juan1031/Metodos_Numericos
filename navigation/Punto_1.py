@@ -6,7 +6,9 @@ file1 = open('./data/punto_1/que_es.md').read()
 file2 = open('./data/punto_1/para_que_sirve.md').read()
 file3 = open('./data/punto_1/objetivo.md').read()
 file4 = open('./data/punto_1/problema.md').read()
-
+filea = open('./data/punto_1/a.md').read()
+fileb = open('./data/punto_1/b.md').read()
+filec = open('./data/punto_1/c.md').read()
 
 # NavBar
 
@@ -60,10 +62,10 @@ def punto_uno():
         horizontal_orientation=True)
 
     if page == a:
-        st.markdown('##')
+        st.markdown(filea)
 
     elif page == b:
-        st.markdown('##')
+        st.markdown(fileb)
 
     elif page == c:
-        st.markdown('##')
+        st.markdown(filec)
