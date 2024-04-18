@@ -1,4 +1,5 @@
 import plotly.graph_objects as go
+import numpy as np
 import streamlit as st
 
 
@@ -73,6 +74,56 @@ class PlotlyChart:
                 tickmode="auto",
                 color='black'  # Color de la fuente del eje y2
             )
+        )
+
+        return fig
+
+    def show(self):
+        st.plotly_chart(self.create_figure())
+
+
+class PlotlyChartPuntoC:
+
+    def __init__(self, f, intervalo, punto_critico, titulo: str):
+        self.f = f
+        self.intervalo = intervalo
+        self.punto_critico = punto_critico
+        self.titulo = titulo
+
+    def create_figure(self):
+
+        x_values = np.linspace(self.intervalo[0], self.intervalo[1], 400)
+        y_values = self.f(x_values)
+
+        y_punto_critico = self.f(self.punto_critico)
+
+        fig = go.Figure()
+
+        fig.add_trace(go.Scatter(x=x_values, y=y_values,
+                                 mode='lines', name='Función'))
+        fig.add_trace(go.Scatter(x=[self.punto_critico], y=[y_punto_critico], mode='markers', marker=dict(
+            color='red', size=10), name='Punto Crítico'))
+
+        fig.update_layout(
+            title={
+                'text': f'<span style="font-size: 20px;">{self.titulo}</span>',
+                'y': 0.9,
+                'x': 0.5,
+                'xanchor': 'center',
+                'yanchor': 'top'
+            },
+            width=550,
+            height=400,
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)',
+            xaxis_showgrid=True,
+            yaxis_showgrid=True,
+            xaxis_ticks='outside',
+            yaxis_ticks='outside',
+            xaxis_linecolor='black',
+            yaxis_linecolor='black',
+            xaxis_gridcolor='rgba(255, 255, 255, 0.1)',
+            yaxis_gridcolor='rgba(255, 255, 255, 0.1)'
         )
 
         return fig
