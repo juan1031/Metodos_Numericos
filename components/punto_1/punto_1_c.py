@@ -1,3 +1,45 @@
 import streamlit as st
+import numpy as np
 
-st.write("Pablo se comprometió a cancelar una deuda con los siguientes pagos: un pago en el día de hoy por valor de `$ 50.000`, un pago dentro de 5 meses por valor de `$ 200.000` y un pago dentro de 8 meses por valor de `$ 350.000`. Posteriormente convino con el acreedor en cancelarle la deuda con dos pagos iguales en los meses 6 y 12. Calcular el valor de estos pagos, si la operación se realiza con una tasa de interés del 3 % mensual. (Rta: `324.144.53`)")
+
+def punto_1_c():
+
+    codec = '''
+        class Punto3DeudaPablo:
+            def __init__(self, tasa_interes):
+                self.tasa_interes = tasa_interes
+
+            def calcular_valor_presente(self):
+                VP = 50000  + \
+                    200000 / ((1 + self.tasa_interes) ** 5) + \
+                    350000 / ((1 + self.tasa_interes) ** 8)
+                return VP
+
+            def newton_raphson(self, x0, tol=1e-6, max_iter=100):
+                """
+                Método de Newton-Raphson para encontrar la raíz de la ecuación.
+                """
+                x = x0
+                for _ in range(max_iter):
+                    f_x = self.calcular_valor_presente() - x * (
+                        1 / ((1 + self.tasa_interes) ** 6) + 1 / ((1 + self.tasa_interes) ** 12))
+                    f_prime_x = - (1 / ((1 + self.tasa_interes) ** 6) + 1 / ((1 + self.tasa_interes) ** 12))
+                    x_next = x - f_x / f_prime_x
+                    if abs(x_next - x) < tol:
+                        return x_next
+                    x = x_next
+                raise ValueError("El método de Newton-Raphson no convergió después de {} iteraciones".format(max_iter))
+
+    tasa_interes_mensual = 0.03
+    deuda_pablo = Punto3DeudaPablo(tasa_interes=tasa_interes_mensual)
+
+    VP = deuda_pablo.calcular_valor_presente()
+
+    x0 = VP / 2
+    valor_pagos_iguales = deuda_pablo.newton_raphson(x0)
+
+    print("El valor de los dos pagos iguales que Pablo debe realizar es:", valor_pagos_iguales)
+            '''
+
+    with st.echo():
+            exec(codec)
