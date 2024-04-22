@@ -60,7 +60,7 @@ def punto_uno():
         horizontal_orientation=True)
 
     if page == a:
-        st.markdown(filea)
+        st.subheader(filea)
         punto_1_a()
         with st.expander("Ver script del primer punto"):
             with open("./components/punto_1/code_a.py", "r") as file:
@@ -68,7 +68,7 @@ def punto_uno():
             st.code(script_content, language="python")
 
     elif page == b:
-        st.markdown(fileb)
+        st.subheader(fileb)
         punto_1_b()
         with st.expander("Ver script del segundo punto"):
             with open("./components/punto_1/code_b.py", "r") as file:
@@ -76,7 +76,7 @@ def punto_uno():
             st.code(script_content, language="python")
 
     else:
-        st.markdown(filec)
+        st.subheader(filec)
         punto_1_c()
     with st.expander("Ver script del tercer punto"):
         with open("./components/punto_1/code_c.py", "r") as file:
