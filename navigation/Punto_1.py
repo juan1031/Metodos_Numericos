@@ -36,7 +36,6 @@ over_theme = {'txc_inactive': 'black', 'menu_background': '#81c3d7',
               'txc_active': 'white', 'option_active': '#16425b'}
 font_fmt = {'font-class': 'h3', 'font-size': '40%'}
 
-
 def punto_uno():
     # -------------------------------------------------------------
 
