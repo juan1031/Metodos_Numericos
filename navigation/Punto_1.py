@@ -51,10 +51,11 @@ def punto_uno():
 
     st.divider()
 
+    st.header("Con ayuda de la clase construida, responder a los siguientes problemas: ")
 
     page = hc.option_bar(
         option_definition=option_data,
-        title='Con ayuda de la clase construida, responder a los siguientes problemas: ',
+        title='',
         key='PrimaryOptionx2',
         override_theme=over_theme,
         horizontal_orientation=True)
