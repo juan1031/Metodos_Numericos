@@ -186,11 +186,12 @@ class MetodosNumericos:
             p1 = p0 - self.f(p0) / self.f_prima(p0)
             aproximaciones.append(p1)
             if abs(p1 - p0) < tol:
-                return p1, self.calcular_error_relativo(aproximaciones[-2], aproximaciones[-1])
+                # self.calcular_error_relativo(aproximaciones[-2], aproximaciones[-1])
+                return p1, aproximaciones
             p0 = p1
         raise ValueError(
             'El método no convergió después de {} iteraciones'.format(max_iter))
-    
+
     def newton_multivariable(self, p0, c1, c2, gamma, tol=1e-6, max_iter=100):
         """
         Método de Newton para encontrar las raíces de un sistema de ecuaciones.
@@ -199,25 +200,26 @@ class MetodosNumericos:
         for i in range(max_iter):
             # Calculamos el valor del sistema de ecuaciones en el punto actual
             f_value = np.array(self.cournot_duopolio(*p0, c1, c2, gamma))
-            
+
             # Si el valor es lo suficientemente cercano a cero, terminamos
             if np.all(np.abs(f_value) < tol):
                 return p0, np.array(aproximaciones)
-            
+
             # Calculamos la matriz jacobiana en el punto actual
             J_value = self.matriz_jacobiana(*p0, c1, c2, gamma)
-            
+
             # Calculamos el siguiente paso utilizando la fórmula de Newton-Raphson para sistemas
             p1 = p0 - np.linalg.inv(J_value) @ f_value
-            
+
             aproximaciones.append(p1)
-            
+
             # Si la norma de la diferencia entre p1 y p0 es menor que la tolerancia, terminamos
             if np.linalg.norm(p1 - p0) < tol:
                 return p1, np.array(aproximaciones)
-            
+
             p0 = p1
-        raise ValueError('El método no convergió después de {} iteraciones'.format(max_iter))
+        raise ValueError(
+            'El método no convergió después de {} iteraciones'.format(max_iter))
 
     # def punto_fijo(self, p0, tol=1e-6, max_iter=100):
     #     """
@@ -382,7 +384,7 @@ class MetodosNumericos:
         return Q, R
 
     # Ayuda: https://en.wikipedia.org/wiki/Jacobi_method
-    @check_diagonal_dominance
+    # @check_diagonal_dominance
     @calculate_time
     def jacobi(self, A, b, x=None, max_iter=1000, tolerance=1e-10):
         n = A.shape[0]
@@ -401,7 +403,7 @@ class MetodosNumericos:
         return x, np.dot(A, x), error
 
     # Ayuda: http://blog.espol.edu.ec/analisisnumerico/gauss-seidel-ejemplo01/
-    @check_diagonal_dominance
+    # @check_diagonal_dominance
     @calculate_time
     def gauss_seidel(self, A, b, x=None, max_iter=1000, tolerance=1e-10):
         n = A.shape[0]
@@ -416,3 +418,31 @@ class MetodosNumericos:
                 break
         error = np.dot(A, x) - b
         return x, np.dot(A, x), error
+
+    def gradient_descent(self, x0, learning_rate, tol=1e-5, max_iter=1000):
+        """
+        Gradient descent optimization algorithm.
+
+        Parameters:
+        - f: Function to minimize.
+        - f_prime: Derivative of the function.
+        - x0: Initial guess for the minimum.
+        - learning_rate: Step size for the gradient descent.
+        - tol: Tolerance for convergence.
+        - max_iter: Maximum number of iterations.
+
+        Returns:
+        - x_min: Minimum of the function.
+        - f_min: Minimum value of the function.
+        - iterations: Number of iterations performed.
+        """
+        x = x0
+        iterations = 0
+        while True:
+            grad = self.f_prima(x)
+            x_new = x - learning_rate * grad
+            if np.abs(x_new - x) < tol or iterations >= max_iter:
+                break
+            x = x_new
+            iterations += 1
+        return x, self.f(x), iterations
