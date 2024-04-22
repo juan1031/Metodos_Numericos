@@ -38,7 +38,7 @@ VP = deuda_pablo.calcular_valor_presente()
 x0 = VP / 2
 valor_pagos_iguales = deuda_pablo.newton_raphson(x0)
 
-print("El valor de los dos pagos iguales que Pablo debe realizar es:", valor_pagos_iguales)
+st.write("El valor de los dos pagos iguales que Pablo debe realizar es:", valor_pagos_iguales)
 '''
     with st.echo():
         exec(codec)
