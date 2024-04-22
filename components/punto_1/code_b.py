@@ -1,9 +1,6 @@
 import streamlit as st
-import numpy as np
-import math
+import math 
 
-def punto_1_b():
-    codeb = '''
 class Punto2FechaPago:
     def __init__(self, documentos, pago_total, tasa_interes):
         self.documentos = documentos
@@ -50,11 +47,6 @@ n_aproximado = fecha_pago_calculator.newton_raphson(10)
 
 dias_exactos = fecha_pago_calculator.calcular_dias_exactos(n_aproximado)
 
-print("El número de meses en que se debe realizar el pago es:", n_aproximado)
-print("Exactamente es en", dias_exactos, "días.")
-    '''
 
-    with st.echo():
-        exec(codeb)
-
-
+st.write("El número de meses en que se debe realizar el pago es:", n_aproximado) 
+st.write("Exactamente es en", dias_exactos, "días.") 

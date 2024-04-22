@@ -63,15 +63,26 @@ def punto_uno():
         override_theme=over_theme,
         horizontal_orientation=True)
 
-
     if page == a:
         st.markdown(filea)
         punto_1_a()
+        with st.expander("Ver script del primer punto"):
+            with open("./components/punto_1/code_a.py", "r") as file:
+                script_content = file.read()
+            st.code(script_content, language="python")
 
     elif page == b:
         st.markdown(fileb)
         punto_1_b()
+        with st.expander("Ver script del segundo punto"):
+            with open("./components/punto_1/code_b.py", "r") as file:
+                script_content = file.read()
+            st.code(script_content, language="python")
 
-    elif page == c:
+    else:
         st.markdown(filec)
         punto_1_c()
+    with st.expander("Ver script del tercer punto"):
+        with open("./components/punto_1/code_c.py", "r") as file:
+            script_content = file.read()
+        st.code(script_content, language="python")

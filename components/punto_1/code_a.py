@@ -1,9 +1,6 @@
 import streamlit as st
-import numpy as np
 
 
-def punto_1_a():
-    codea = '''
 class ValorPresente:
     def __init__(self, tasa_mensual, retiros, saldo_final_deseado):
         self.tasa_mensual = tasa_mensual
@@ -11,8 +8,8 @@ class ValorPresente:
         self.saldo_final_deseado = saldo_final_deseado
 
     def calcular_valor_presente(self, P):
-        return sum(retiro / ((1 + self.tasa_mensual) ** mes) for mes, retiro in self.retiros.items()) + \\
-            (0.5 * P / ((1 + self.tasa_mensual) ** 10)) + \\
+        return sum(retiro / ((1 + self.tasa_mensual) ** mes) for mes, retiro in self.retiros.items()) + \
+            (0.5 * P / ((1 + self.tasa_mensual) ** 10)) + \
             (self.saldo_final_deseado / ((1 + self.tasa_mensual) ** 12)) - P
 
     def newton_raphson(self, P0, tol=1e-6, max_iter=100):
@@ -36,8 +33,3 @@ P0 = 100000
 valor_presente = vp_calculator.newton_raphson(P0)
 
 st.write("Valor presente (P):", valor_presente)
-'''
-    with st.echo():
-        exec(codea)
-
-

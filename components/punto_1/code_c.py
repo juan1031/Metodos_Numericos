@@ -1,10 +1,6 @@
 import streamlit as st
-import numpy as np
 
 
-def punto_1_c():
-
-    codec = '''
 class Punto3DeudaPablo:
     def __init__(self, tasa_interes):
         self.tasa_interes = tasa_interes
@@ -38,7 +34,4 @@ VP = deuda_pablo.calcular_valor_presente()
 x0 = VP / 2
 valor_pagos_iguales = deuda_pablo.newton_raphson(x0)
 
-print("El valor de los dos pagos iguales que Pablo debe realizar es:", valor_pagos_iguales)
-'''
-    with st.echo():
-        exec(codec)
+st.write("El valor de los dos pagos iguales que Pablo debe realizar es:", valor_pagos_iguales)
