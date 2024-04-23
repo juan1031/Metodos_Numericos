@@ -40,5 +40,4 @@ valor_pagos_iguales = deuda_pablo.newton_raphson(x0)
 
 st.write("El valor de los dos pagos iguales que Pablo debe realizar es:", valor_pagos_iguales)
 '''
-    with st.echo():
-        exec(codec)
+    exec(codec)

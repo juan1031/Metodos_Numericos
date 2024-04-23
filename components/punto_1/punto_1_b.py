@@ -53,8 +53,6 @@ dias_exactos = fecha_pago_calculator.calcular_dias_exactos(n_aproximado)
 st.write("El número de meses en que se debe realizar el pago es:", n_aproximado) 
 st.write("Exactamente es en", dias_exactos, "días.") 
     '''
-
-    with st.echo():
-        exec(codeb)
+    exec(codeb)
 
 
