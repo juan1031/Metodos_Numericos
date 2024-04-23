@@ -84,12 +84,6 @@ class MetodosNumericos:
                                  line=dict(color='blue', width=2)))
 
         fig.update_layout(
-            title=dict(
-                text='Gráfico de la Función',
-                font=dict(color='black', size=20),
-                x=0.2,
-                y=0.9
-            ),
             width=450,
             height=400,
             paper_bgcolor='rgba(0,0,0,0)',
