@@ -45,6 +45,6 @@ def punto_tres():
 
         st.markdown('''Se pudo demostrar un punto critico en el dominio el cual es con la condición de primer orden el cual es
                     $\sqrt{1/10}$. ''' + f'''El punto critico para ésta función se encontro mediante el metodo numérico GSS (Golden-section search)
-                    otorgando el valor de **{x}**, con un error relativo de **{abs(x-np.sqrt(1/10)/np.sqrt(1/10))}**, el detalle de la 
-                    evaluación en el punto se da en la gráfica sin embargo tambien se lo describiremos a continuación: **f({x}) = {f(x)}**''')
+                    otorgando el valor de **{x}**, el detalle de la evaluación en el punto se da en la gráfica sin embargo tambien 
+                    se lo describiremos más sencillo a continuación: **f({x}) = {f(x)}**''')
     st.divider()
