@@ -22,13 +22,16 @@ Fuente: GBM Academy. (s.f.). ¿Cuál es la diferencia entre valor presente y fut
 Ahora debemos hacer los despejes para encontrar los debidos valores de tasa, flujo o tiempo.
 
 - Para encontrar la tasa ($r$):
-$r = \left( \frac{\sum_{t=0}^{n} F_t}{VP} \right)^{\frac{1}{n}} - 1$
 
-- Para encontrar el flujo ($F_t$):
-$F_t = VP \times (1 + r)^t$
+$r = \left( \frac{\sum_{n=0}^{n} F_n}{VP} \right)^{\frac{1}{n}} - 1$
+
+- Para encontrar el flujo ($F_n$):
+
+$F_n = VP \times (1 + r)^n$
 
 - Para encontrar el tiempo ($n$):
-$n = \frac{\log \left( \frac{\sum_{t=0}^{n} F_t}{VP} \right)}{\log(1 + r)}$
+
+$n = \frac{\log \left( \frac{\sum_{n=0}^{n} F_n}{VP} \right)}{\log(1 + r)}$
 
 
 
