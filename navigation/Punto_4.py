@@ -8,27 +8,25 @@ import hydralit_components as hc
 def punto_cuatro():
 
     file1 = open('./data/punto_4/contexto_mco.md').read()
+    file2 = open('./data/punto_4/modelos.md').read()
+
     data = pd.read_csv('./data/punto_4/base_p4.csv', index_col=0)
     data = data.drop('fatheduc', axis=1)
     data = data.dropna(subset=['motheduc'])
-    data = data[['faminc', 'cigprice', 'bwght', 'motheduc', 'male', 'cigs']]
-    data1 = data.copy()
+
     # -------------------------------------------------------------
     # NavBar
 
-    a = 'Introducción'
-    b = 'EDA'
+    a = 'Introducción & EDA'
     c = 'Modelos'
 
     tabs = [
         a,
-        b,
         c
     ]
 
     option_data = [
         {'icon': "", 'label': a},
-        {'icon': "", 'label': b},
         {'icon': "", 'label': c}
     ]
 
@@ -54,27 +52,57 @@ def punto_cuatro():
 
         st.divider()
 
-    if chosen_tab == b:
-
-        st.image('./data/punto_4/EDA_metodos.png',
-                 caption='EDA de la base de datos')
+        _, col, _ = st.columns([.5, 3, .5])
+        with col:
+            st.image('./data/punto_4/EDA_metodos.png',
+                     caption='EDA de la base de datos')
 
         st.divider()
 
     if chosen_tab == c:
 
-        col1, col2 = st.columns([3, 2])
+        st.markdown(file2)
+        _, col, _ = st.columns([.5, 3, .5])
+        with col:
+            st.dataframe(data=data, width=1000, height=300)
+
+        # Menú desplegable para seleccionar las empresas
+        selected_vars = st.multiselect(
+            "Selecciona las variables que quieres usar para el modelo: ", data.drop(
+                'bwght', axis=1).columns.to_list(),
+            default=['faminc', 'cigprice',
+                     'motheduc', 'male', 'cigs'],
+        )
+
+        if not selected_vars:
+            st.warning("Por favor, selecciona al menos una variable.")
+            st.stop()
+
+        todas = selected_vars.copy()
+        todas.append('bwght')
+
+        data1 = data[todas]
+
+        col1, _, col2 = st.columns([3, .5, 3])
 
         with col1:
 
-            regression = RegressionMetrics(data, 'bwght')
+            st.subheader('Metodos Numéricos')
+            regression = RegressionMetrics(data1, 'bwght')
             regression.fit()
             regression.display_metrics()
-            
+
+            with st.expander("Ver script MCO con metodos numericos"):
+
+                with open("./src/OLSRegression.py", "r") as file:
+                    script_content = file.read()
+
+                st.code(script_content, language="python")
 
         with col2:
 
-            formula = 'bwght ~ faminc + cigprice + motheduc + male + cigs'
+            st.subheader('Modulo Statsmodels')
+            formula = 'bwght ~ ' + ' + '.join(selected_vars)
             model = sm.ols(formula=formula, data=data1)
             fitted = model.fit()
 
@@ -94,6 +122,35 @@ def punto_cuatro():
 
             st.text("=" * 54)
             st.text("R-squared: {}".format(R_squared))
+
+            code = '''
+                    # selected_vars es la lista de variables del menú
+
+                    formula = 'bwght ~ ' + ' + '.join(selected_vars)
+                    model = sm.ols(formula=formula, data=data1)
+                    fitted = model.fit()
+
+                    coefs = fitted.params
+                    std_errors = fitted.bse
+                    variable_names = coefs.index.tolist()
+                    R_squared = fitted.rsquared
+
+                    st.text("=" * 54)
+                    st.text("{:<12} {:>20} {:>20}".format(
+                        "Variable", "Coef", "Standard Error"))
+                    st.text("-" * 54)
+
+                    for nombre, coeficiente, error in zip(variable_names, coefs, std_errors):
+                        st.text("{:<12} {:>20.15f} {:>20.15f}".format(
+                            nombre, coeficiente, error))
+
+                    st.text("=" * 54)
+                    st.text("R-squared: {}".format(R_squared))
+
+                    '''
+            with st.expander("Ver script MCO Stats Model"):
+
+                st.code(code, language="python")
 
         st.divider()
     # -------------------------------------------------------------
