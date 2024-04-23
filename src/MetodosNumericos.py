@@ -446,3 +446,49 @@ class MetodosNumericos:
             x = x_new
             iterations += 1
         return x, self.f(x), iterations
+
+    def gss_min(self, a, b, tol=1e-5):
+        """Golden-section search
+        to find the minimum of f on [a,b]
+        f: a strictly unimodal function on [a,b]
+
+        Example:
+        >>> f = lambda x: (x - 2) ** 2
+        >>> x = gss(f, 1, 5)
+        >>> print("%.15f" % x)
+        2.000009644875678
+
+        """
+        gr = (math.sqrt(5) + 1) / 2
+        while abs(b - a) > tol:
+            c = b - (b - a) / gr
+            d = a + (b - a) / gr
+            if self.f(c) < self.f(d):  # f(c) > f(d) to find the maximum
+                b = d
+            else:
+                a = c
+
+        return (b + a) / 2
+
+    def gss_max(self, a, b, tol=1e-5):
+        """Golden-section search
+        to find the minimum of f on [a,b]
+        f: a strictly unimodal function on [a,b]
+
+        Example:
+        >>> f = lambda x: (x - 2) ** 2
+        >>> x = gss(f, 1, 5)
+        >>> print("%.15f" % x)
+        2.000009644875678
+
+        """
+        gr = (math.sqrt(5) + 1) / 2
+        while abs(b - a) > tol:
+            c = b - (b - a) / gr
+            d = a + (b - a) / gr
+            if self.f(c) > self.f(d):  # f(c) > f(d) to find the maximum
+                b = d
+            else:
+                a = c
+
+        return (b + a) / 2
