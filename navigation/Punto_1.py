@@ -6,13 +6,12 @@ from components.punto_1.punto_1_b import punto_1_b
 from components.punto_1.punto_1_c import punto_1_c
 
 file1 = open('./data/punto_1/que_es.md').read()
-file2 = open('./data/punto_1/para_que_sirve.md').read()
 file3 = open('./data/punto_1/objetivo.md').read()
 file4 = open('./data/punto_1/problema.md').read()
 filea = open('./data/punto_1/a.md').read()
 fileb = open('./data/punto_1/b.md').read()
 filec = open('./data/punto_1/c.md').read()
-image = './assets/images/images.png'
+image = './assets/images/image.png'
 
 
 
@@ -42,10 +41,10 @@ def punto_uno():
     # -------------------------------------------------------------
 
     st.markdown(file1)
+    _, col, _ = st.columns([1,2,1])
 
-    st.image(image, caption='', use_column_width=True)
-
-    st.markdown(file2)
+    with col:
+        st.image(image, caption='Fuente: Bresani Tamayo, C., Burns OHara, A. R., Escalante Gavancho, P., & Medroa Delgado, G. (2018). Matemática financiera: teoría y ejercicios.', width=700)
 
     st.markdown(file3)
 
@@ -83,7 +82,7 @@ def punto_uno():
     else:
         st.subheader(filec)
         punto_1_c()
-    with st.expander("Ver script del tercer punto"):
-        with open("./components/punto_1/code_c.py", "r") as file:
-            script_content = file.read()
-        st.code(script_content, language="python")
+        with st.expander("Ver script del tercer punto"):
+            with open("./components/punto_1/code_c.py", "r") as file:
+                script_content = file.read()
+            st.code(script_content, language="python")
