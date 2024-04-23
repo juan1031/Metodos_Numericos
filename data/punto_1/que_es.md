@@ -5,7 +5,6 @@ variará dependiendo de la fecha focal que se seleccione (en este caso es 0). En
 
 - **Línea de Tiempo o Diagrama de Flujos**: Consiste en elaborar una línea para representar los flujos de dinero o flujo de caja en una escala de tiempo para facilitar la comprensión del problema. Como por ejemplo: 
 
-![alt text](image.png)
 
 
 Fuente: 

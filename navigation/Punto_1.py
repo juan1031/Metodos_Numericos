@@ -13,6 +13,9 @@ filea = open('./data/punto_1/a.md').read()
 fileb = open('./data/punto_1/b.md').read()
 filec = open('./data/punto_1/c.md').read()
 
+image = open('./assets/images/images.png', 'rb').read()
+
+
 
 # NavBar
 
@@ -40,6 +43,8 @@ def punto_uno():
     # -------------------------------------------------------------
 
     st.markdown(file1)
+
+    st.image(image, caption='', use_column_width=True)
 
     st.markdown(file2)
 
