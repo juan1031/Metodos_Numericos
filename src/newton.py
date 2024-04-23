@@ -12,8 +12,8 @@ class NewtonMethod:
         self.q1, self.q2 = sp.symbols('q1 q2')
         
         # Definir las funciones f1 y f2
-        self.f1 = ((self.q1 + self.q2)**(-1/self.gamma)) - (1/self.gamma)*((self.q1 + self.q2)**((-1/self.gamma)-1))*self.q1 - (1/2)*self.c1
-        self.f2 = ((self.q1 + self.q2)**(-1/self.gamma)) - (1/self.gamma)*((self.q1 + self.q2)**((-1/self.gamma)-1))*self.q2 - (1/2)*self.c2
+        self.f1 = ((self.q1 + self.q2)**(-1/self.gamma)) - (1/self.gamma)*((self.q1 + self.q2)**((-1/self.gamma)-1))*self.q1 - self.q1*self.c1
+        self.f2 = ((self.q1 + self.q2)**(-1/self.gamma)) - (1/self.gamma)*((self.q1 + self.q2)**((-1/self.gamma)-1))*self.q2 - self.q2*self.c2
         
         # Calcular las derivadas parciales de f1 y f2
         self.df1_q1 = sp.diff(self.f1, self.q1)
