@@ -12,8 +12,7 @@ file4 = open('./data/punto_1/problema.md').read()
 filea = open('./data/punto_1/a.md').read()
 fileb = open('./data/punto_1/b.md').read()
 filec = open('./data/punto_1/c.md').read()
-
-image = open('./assets/images/images.png', 'rb').read()
+image = './assets/images/images.png'
 
 
 
