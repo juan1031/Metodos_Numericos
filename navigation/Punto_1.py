@@ -11,6 +11,7 @@ file4 = open('./data/punto_1/problema.md').read()
 filea = open('./data/punto_1/a.md').read()
 fileb = open('./data/punto_1/b.md').read()
 filec = open('./data/punto_1/c.md').read()
+fileformulas = open('./data/punto_1/formulas.md').read()
 image = './assets/images/image.png'
 
 
@@ -49,6 +50,8 @@ def punto_uno():
     st.markdown(file3)
 
     st.markdown(file4)
+
+    st.markdown(fileformulas)
 
     # clase
 
@@ -98,4 +101,4 @@ def punto_uno():
         st.divider()
         st.write("Pablo cancelará la deuda con dos pagos iguales en el mes 6 y 12, cada uno por un monto aproximado de `$324.145` a una tasa de interés del 3% mensual")
         st.divider()
-        
+

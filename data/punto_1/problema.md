@@ -9,6 +9,3 @@ Reto: Construir una clase que reciba un argumento, (tasa, flujo o n). Si recibe:
 - **flujo**: entonces halle el flujo que cumple la ecuación de valor.
 
 - **n**: entonces halle el valor n que cumple la ecuación de valor.
-
-
-Por ende la clase construida es:
