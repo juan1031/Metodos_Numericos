@@ -52,7 +52,12 @@ class MetodosNumericos:
         return resultado, tiempo_ejecucion
 
     def calcular_error_relativo(self, aproximacion, valor_exacto):
-        return np.abs(aproximacion - valor_exacto) / np.abs(valor_exacto)
+        if valor_exacto == 0 and aproximacion == 0:
+            return 0
+        elif valor_exacto <= 1e-10:
+            return 0
+        error_relativo = np.abs((aproximacion-valor_exacto)/valor_exacto)
+        return error_relativo
 
     @staticmethod
     def derivada(f):
@@ -139,7 +144,8 @@ class MetodosNumericos:
         Método de bisección para encontrar la raíz de la función en el intervalo [a, b].
         """
         aproximaciones = []
-        fa, fb = self.f(a), self.f(b)
+        fa = self.f(a)
+        fb = self.f(b)
 
         iter_count = 0  # Contador de iteraciones
 
@@ -153,7 +159,8 @@ class MetodosNumericos:
             elif fa * f_med > 0:
                 a, fa = x_med, f_med
             else:
-                b, fb = x_med, f_med
+                b = x_med
+                fb = f_med
 
             iter_count += 1  # Incrementar el contador de iteraciones
 
@@ -186,8 +193,7 @@ class MetodosNumericos:
             p1 = p0 - self.f(p0) / self.f_prima(p0)
             aproximaciones.append(p1)
             if abs(p1 - p0) < tol:
-                # self.calcular_error_relativo(aproximaciones[-2], aproximaciones[-1])
-                return p1, aproximaciones
+                return p1, self.calcular_error_relativo(aproximaciones[-2], aproximaciones[-1])
             p0 = p1
         raise ValueError(
             'El método no convergió después de {} iteraciones'.format(max_iter))
