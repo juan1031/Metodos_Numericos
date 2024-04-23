@@ -47,3 +47,5 @@ def punto_cinco():
         with open("./src/newton.py", "r") as file:
             script_content = file.read()
         st.code(script_content, language="python")
+
+    st.divider() 

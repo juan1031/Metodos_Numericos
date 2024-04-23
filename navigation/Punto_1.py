@@ -65,30 +65,37 @@ def punto_uno():
 
     if page == a:
         st.subheader(filea)
+        st.divider()
         punto_1_a()
         with st.expander("Ver script del primer punto"):
             with open("./components/punto_1/code_a.py", "r") as file:
                 script_content = file.read()
             st.code(script_content, language="python")
-        st.write("Para garantizar la capacidad de retirar $75,000 dentro de seis meses, $45,000 dentro de ocho meses, la mitad del depósito dentro de diez meses y mantener un saldo de $300,000 dentro de 12 meses, se debe depositar hoy un total de aproximadamente `$579,074.10` en una cuenta de ahorros que ofrece un interés del 2% mensual.")
+        st.divider()
+        st.write("Para garantizar la capacidad de retirar `$75,000` dentro de seis meses, `$45,000` dentro de ocho meses, la mitad del depósito dentro de diez meses y mantener un saldo de `$300,000` dentro de 12 meses, se debe depositar hoy un total de aproximadamente `$579,074.10` en una cuenta de ahorros que ofrece un interés del 2% mensual.")
+        st.divider()
 
     elif page == b:
         st.subheader(fileb)
+        st.divider()
         punto_1_b()
         with st.expander("Ver script del segundo punto"):
             with open("./components/punto_1/code_b.py", "r") as file:
                 script_content = file.read()
             st.code(script_content, language="python")
-
-        st.write("Para cumplir con el pago de los tres documentos por cobrar, que en total suman $900.000, a una tasa de interés mensual del 4%, el pago debe realizarse en aproximadamente `1.56 meses`. Esto se traduce en `47 días`.")
+        st.divider()
+        st.write("Para cumplir con el pago de los tres documentos por cobrar, que en total suman `$900.000`, a una tasa de interés mensual del 4%, el pago debe realizarse en aproximadamente `1.56 meses`. Esto se traduce en `47 días`.")
+        st.divider()
 
     else:
         st.subheader(filec)
+        st.divider()
         punto_1_c()
         with st.expander("Ver script del tercer punto"):
             with open("./components/punto_1/code_c.py", "r") as file:
                 script_content = file.read()
             st.code(script_content, language="python")
-
+        st.divider()
         st.write("Pablo cancelará la deuda con dos pagos iguales en el mes 6 y 12, cada uno por un monto aproximado de `$324.145` a una tasa de interés del 3% mensual")
-
+        st.divider()
+        

@@ -52,10 +52,14 @@ def punto_cuatro():
 
         st.markdown(file1)
 
+        st.divider()
+
     if chosen_tab == b:
 
         st.image('./data/punto_4/EDA_metodos.png',
                  caption='EDA de la base de datos')
+
+        st.divider()
 
     if chosen_tab == c:
 
@@ -66,6 +70,7 @@ def punto_cuatro():
             regression = RegressionMetrics(data, 'bwght')
             regression.fit()
             regression.display_metrics()
+            
 
         with col2:
 
