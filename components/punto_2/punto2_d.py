@@ -84,8 +84,18 @@ def punto2_d():
         )
         st.markdown(
             f'''
-            {error_relativo_biseccion}, {error_relativo_secante}, {error_relativo_newton}
-            '''
+            Los resultados obtenidos de las aproximaciones utilizando los métodos de bisección, 
+            secante y Newton-Raphson con un máximo de **{max_iter}** iteraciones para cada metodo muestran que cada método 
+            produce una estimación de la raíz, siendo todas bastante similares en los 5 decimales de proximidad. 
+            Sin embargo, al observar los errores relativos asociados 
+            a cada método, podemos notar diferencias significativas en su precisión. El método de bisección tiene un 
+            error relativo de aproximadamente **{error_relativo_biseccion}**, 
+            lo que indica una precisión moderada pero segura. Por otro lado, tanto el método de secante 
+            como el de Newton-Raphson muestran errores relativos mucho más bajos, de alrededor de **{error_relativo_secante}**
+            y **{error_relativo_newton}** respectivamente. Esto sugiere que, aunque todos los métodos ofrecen una aproximación
+            cercana, los métodos de secante y sobre todo Newton-Raphson son notablemente más precisos en este caso y rapidos nuevamente
+            en este caso.
+            ''',
         )
 
     st.divider()

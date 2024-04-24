@@ -37,7 +37,5 @@ valor_presente = vp_calculator.newton_raphson(P0)
 
 st.write("Valor presente (P):", valor_presente)
 '''
-    
+
     exec(codea)
-
-

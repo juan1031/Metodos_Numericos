@@ -5,15 +5,8 @@ from components.markdown.markdown import Markdown
 
 # -------------------------------------------------------------
 
-file1 = open("./data/Ejemplo2.md").read()
+file1 = open("./data/objetivo.md").read()
 text1 = Markdown(file1).show(tab=True)
-
-file2 = open("./data/Ejemplo.md").read()
-# -------------------------------------------------------------
-# Componente de centrado
-# row1_center = CenteredColumns(num_columns=1)
-# row2_center = CenteredColumns(num_columns=2)
-# -------------------------------------------------------------
 
 
 def intro_page():

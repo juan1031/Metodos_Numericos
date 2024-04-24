@@ -84,7 +84,14 @@ def punto2_c():
         )
         st.markdown(
             f'''
-            {error_relativo_biseccion}, {error_relativo_secante}, {error_relativo_newton}
-            '''
+            Los resultados obtenidos de las aproximaciones utilizando los métodos de bisección, 
+            secante y Newton-Raphson con un máximo de **{max_iter}** iteraciones para cada metodo con esta función
+            una aproximación exacta en cero. El método de bisección, secante y newton tiene un 
+            error relativo de aproximadamente **{error_relativo_biseccion}**, **{error_relativo_newton}**, **{error_relativo_secante}**
+            respectivamente, donde indica una bastante precisión con el intervalo definido por defecto. 
+            Por otro lado, el metodo de bisección se demora mucho más que los demás, y el intervalo definido para secante y newton juegan
+            un papel muy importante en esta métrica.
+            ''',
         )
+
     st.divider()

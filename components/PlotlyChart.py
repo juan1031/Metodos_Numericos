@@ -84,11 +84,10 @@ class PlotlyChart:
 
 class PlotlyChartPuntoC:
 
-    def __init__(self, f, intervalo, punto_critico, titulo: str):
+    def __init__(self, f, intervalo, punto_critico):
         self.f = f
         self.intervalo = intervalo
         self.punto_critico = punto_critico
-        self.titulo = titulo
 
     def create_figure(self):
 
@@ -105,14 +104,7 @@ class PlotlyChartPuntoC:
             color='red', size=10), name='Punto Crítico'))
 
         fig.update_layout(
-            title={
-                'text': f'<span style="font-size: 20px;">{self.titulo}</span>',
-                'y': 0.9,
-                'x': 0.5,
-                'xanchor': 'center',
-                'yanchor': 'top'
-            },
-            width=550,
+            width=500,
             height=400,
             paper_bgcolor='rgba(0,0,0,0)',
             plot_bgcolor='rgba(0,0,0,0)',
