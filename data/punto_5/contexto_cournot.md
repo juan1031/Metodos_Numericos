@@ -13,6 +13,11 @@ La competencia de Cournot es un modelo de mercado de oligopolio donde dos o más
   - Cada empresa toma decisiones estratégicas considerando las acciones de su competencia.
   - Las decisiones de producción se toman simultáneamente, sin cooperación entre empresas.
 
+
+Fuente: Schotte (31 de Mayo de 2022) Competencia de Cournot.INOMICS.Recuperado de https://inomics.com/es/terms/competencia-de-cournot-1525473 
+
+ 
+
 ## **Problema Propuesto:**
 
 Se busca encontrar la cantidad de producción óptima para dos firmas, de manera que ninguna tenga incentivos para cambiar su producción. Cada empresa enfrenta el dilema de que aumentar su producción puede incrementar sus ingresos al vender más, pero también puede reducir los precios debido a una mayor oferta en el mercado. Por lo tanto, el objetivo es determinar las cantidades de producción que maximicen el beneficio neto, considerando la relación entre producción, precio y costos.
