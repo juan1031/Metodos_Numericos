@@ -8,7 +8,10 @@ import hydralit_components as hc
 def punto_cuatro():
 
     file1 = open('./data/punto_4/contexto_mco.md').read()
-    file2 = open('./data/punto_4/modelos.md').read()
+    file2 = open('./data/punto_4/problema.md').read()
+    file3 = open('./data/punto_4/modelos.md').read()
+
+    st.markdown(file1)
 
     data = pd.read_csv('./data/punto_4/base_p4.csv', index_col=0)
     data = data.drop('fatheduc', axis=1)
@@ -48,7 +51,7 @@ def punto_cuatro():
 
     if chosen_tab == a:
 
-        st.markdown(file1)
+        st.markdown(file2)
 
         st.divider()
 
@@ -61,7 +64,7 @@ def punto_cuatro():
 
     if chosen_tab == c:
 
-        st.markdown(file2)
+        st.markdown(file3)
         _, col, _ = st.columns([.5, 3, .5])
         with col:
             st.dataframe(data=data, width=1000, height=300)
