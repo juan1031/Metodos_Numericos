@@ -1,10 +1,10 @@
 ## Conceptos y Fórmulas 
 
-Es de gran importancia comprender el concepto de `valor futuro (VF)`, el cual segpun GBM Academy (s.f.) hace referencia a las entradas de dinero que pudiera generar una inversión en una fecha futura.  Es decir, es la cantidad final de dinero que se obtendrá de una inversión a determinada cantidad de tiempo y con la aplicación de una tasa de interés simple o compuesta
+Es de gran importancia comprender el concepto de **valor futuro (VF)**, el cual segpun GBM Academy (s.f.) hace referencia a las entradas de dinero que pudiera generar una inversión en una fecha futura.  Es decir, es la cantidad final de dinero que se obtendrá de una inversión a determinada cantidad de tiempo y con la aplicación de una tasa de interés simple o compuesta
 
 **También se debe comprender el concepto de VF pero en este caso la fecha focal será 0 (o sea sólo se usará VP), por ende no hay necesidad de implementarlo. No enfocaremos únicamente en VP**
 
-Según GBM Academy (s.f.), el `valor presente (VP)` representa cuánto vale actualmente una suma de dinero que se recibirá en el futuro. Este cálculo es esencial debido a la fluctuación del valor del dinero con el tiempo; lo que vale hoy no será equivalente a su valor real cuando se reciba en el futuro. El cálculo del VP puede ser crucial para evaluar la conveniencia de realizar una inversión.
+Según GBM Academy (s.f.), el **valor presente (VP)** representa cuánto vale actualmente una suma de dinero que se recibirá en el futuro. Este cálculo es esencial debido a la fluctuación del valor del dinero con el tiempo; lo que vale hoy no será equivalente a su valor real cuando se reciba en el futuro. El cálculo del VP puede ser crucial para evaluar la conveniencia de realizar una inversión.
 
 Las variables que intervienen en el cálculo del valor presente son:
 
