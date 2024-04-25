@@ -151,7 +151,7 @@ def punto_cuatro():
                     st.text("R-squared: {}".format(R_squared))
 
                     '''
-            with st.expander("Ver script MCO Stats Model"):
+            with st.expander("Ver script MCO con Statsmodels"):
 
                 st.code(code, language="python")
 
