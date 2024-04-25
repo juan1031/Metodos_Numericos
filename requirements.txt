@@ -15,3 +15,5 @@ streamlit-card==1.0.0
 hydralit-components==1.0.10
 scipy==1.13.0
 sympy==1.12
+scikit-learn==1.4.2
+statsmodels==0.14.2
