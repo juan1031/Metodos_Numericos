@@ -1,8 +1,7 @@
-from src.funciones import displayPDF
 from components.markdown.markdown import Markdown
 from PIL import Image
-from src.funciones import slideshow_swipeable
 import streamlit as st
+import streamlit.components.v1 as components
 
 # -------------------------------------------------------------
 
@@ -21,36 +20,30 @@ def intro_page():
             Numéricos para resolver un conjunto de problemas planteados en el taller/parcial.''')
     st.divider()
 
-    st.header("Objetivo")
-    st.markdown(
-        text1,
-        unsafe_allow_html=True,
-    ),
-
     st.header("Taller")
 
-    IMAGES = [
-        "../assets/images/sc1.png",
-        "../assets/images/sc2.png",
-        "../assets/images/sc3.png",
-        "../assets/images/sc4.png",
-        "../assets/images/sc51.png",
-        "../assets/images/sc52.png",
-    ]
+    # Ruta o URL del documento
+    file_path = './assets/Problem_Set_I_Numerical_Methods.pdf'
 
-    slideshow_swipeable(IMAGES)
+    feature_image1 = Image.open(r'./assets/images/vistapdf.png')
+    with st.container():
+        image_col, text_col = st.columns((1, 3))
+        with image_col:
+            st.image(feature_image1, caption='Fuente: Propia')
+            with open(file_path, "rb") as pdf_file:
+                PDFbyte = pdf_file.read()
 
-    #     Ruta o URL del documento
-    # file_path = 'assets/Problem_Set_I_Numerical_Methods.pdf'
+            _, col, _ = st.columns([0.5, 1, 0.5])
+            with col:
+                st.download_button(label="Descargar Taller/Parcial", key='3',
+                                   data=PDFbyte,
+                                   file_name="Taller.pdf",
+                                   mime='application/octet-stream')
+        with text_col:
+            st.header("Objetivo")
+            st.markdown(
+                text1,
+                unsafe_allow_html=True,
+            ),
 
-    # feature_image1 = Image.open(r'img/min_manual.png')
-    # with st.container():
-    #     image_col, text_col = st.columns((1,3))
-    #     with image_col:
-    #         st.image(feature_image1, caption='Fuente: Propia')
-    #     with text_col:
-    #         st.markdown(""" <style> .font {
-    #             font-size:22px ; font-family: 'Black'; color: #FFFFF;}
-    #             </style> """, unsafe_allow_html=True)
-    #         st.markdown('<p class="font">Manual Obtención y Procesamiento de Datos</p>', unsafe_allow_html=True)
-    # displayPDF("assets/Problem_Set_I_Numerical_Methods.pdf")
+    st.divider()
