@@ -33,6 +33,3 @@ $F_n = VP \times (1 + r)^n$
 
 $n = \frac{\log \left( \frac{\sum_{n=0}^{n} F_n}{VP} \right)}{\log(1 + r)}$
 
-Por ende, teniendo en cuenta todo lo anterior la clase construida es:
-
-

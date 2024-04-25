@@ -61,7 +61,7 @@ def punto_uno():
     st.divider()
 
     st.header(
-        "Con ayuda de la clase construida, responder a los siguientes problemas: ")
+        "Teniendo en cuenta lo anterior, se respondieron los siguientes problemas: ")
 
     chosen_tab = hc.option_bar(
         option_definition=option_data,
