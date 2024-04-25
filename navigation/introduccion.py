@@ -1,7 +1,8 @@
-import streamlit as st
 from src.funciones import displayPDF
 from components.markdown.markdown import Markdown
-# from components.Custom_Components import CenteredColumns
+from PIL import Image
+from src.funciones import slideshow_swipeable
+import streamlit as st
 
 # -------------------------------------------------------------
 
@@ -27,4 +28,29 @@ def intro_page():
     ),
 
     st.header("Taller")
-    displayPDF("assets/Problem_Set_I_Numerical_Methods.pdf")
+
+    IMAGES = [
+        "../assets/images/sc1.png",
+        "../assets/images/sc2.png",
+        "../assets/images/sc3.png",
+        "../assets/images/sc4.png",
+        "../assets/images/sc51.png",
+        "../assets/images/sc52.png",
+    ]
+
+    slideshow_swipeable(IMAGES)
+
+    #     Ruta o URL del documento
+    # file_path = 'assets/Problem_Set_I_Numerical_Methods.pdf'
+
+    # feature_image1 = Image.open(r'img/min_manual.png')
+    # with st.container():
+    #     image_col, text_col = st.columns((1,3))
+    #     with image_col:
+    #         st.image(feature_image1, caption='Fuente: Propia')
+    #     with text_col:
+    #         st.markdown(""" <style> .font {
+    #             font-size:22px ; font-family: 'Black'; color: #FFFFF;}
+    #             </style> """, unsafe_allow_html=True)
+    #         st.markdown('<p class="font">Manual Obtención y Procesamiento de Datos</p>', unsafe_allow_html=True)
+    # displayPDF("assets/Problem_Set_I_Numerical_Methods.pdf")
