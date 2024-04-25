@@ -17,7 +17,7 @@ def intro_page():
         Métodos Numéricos por el profesor Camilo Castillo de la Universidad Externado de Colombia. 
         En este proyecto, hemos creado un aplicativo utilizando
           técnicas de programación en Python y la implementación de la clase de Métodos
-            Numéricos para resolver un conjunto de problemas planteados en el taller.''')
+            Numéricos para resolver un conjunto de problemas planteados en el taller/parcial.''')
     st.divider()
 
     st.header("Objetivo")
